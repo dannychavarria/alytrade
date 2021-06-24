@@ -1,3 +1,13 @@
+:root {
+  --sideBarLeft: 20vw;
+  --sideBarRight: 20vw;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
