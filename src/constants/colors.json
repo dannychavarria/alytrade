@@ -1,0 +1,10 @@
+{
+    "textColor": "#ffffff",
+    "smallTextColor":"#7a7c7e",
+    "sideBarBg":"#070b11",
+    "dashboardBg":"#031621",
+    "selectorActive":"#062131",
+    "btcColor" :"#f7931a",
+    "totalColor":"#9ed3da",
+    "tableBodyTextColor":"#808080"
+}

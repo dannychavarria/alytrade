@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
     LeftContainer: {
         display: "table-cell",
         width: "20%",
+        minWidth: "273px"
     },
     RightContainer: {
         background:"#031621",

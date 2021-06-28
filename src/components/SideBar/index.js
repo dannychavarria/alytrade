@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
         background: "#070b11",
         width: "100%",
         padding: "-1.5rem",
-        height: "100vh",
+        height: "100%",
         minWidth: "273px"
     },
     SideBarUp: {
