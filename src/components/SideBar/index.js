@@ -2,7 +2,7 @@ import React from 'react'
 import Selector from './Selector'
 import { createUseStyles } from 'react-jss'
 import logoSVG from '../../assets/img/Alytrade_Orbe.svg'
-import logoPNG from '../../assets/img/Alytrade_Orbe.png'
+
 const useStyles = createUseStyles({
     SideBar: {
         display: "table",

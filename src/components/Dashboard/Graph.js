@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 import * as Chartjs from 'chart.js'
 import * as Colors from '../../constants/colors.json'
