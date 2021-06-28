@@ -57,6 +57,10 @@ const useStyles = createUseStyles({
     boton: {
         display: "block",
         margin: "0.5rem 0 0.5rem 0"
+    },
+    logo: {
+        paddingLeft:"2rem",
+        paddingRight:"8px"
     }
 })
 
@@ -94,7 +98,7 @@ const Selector = ({ text, selected, coin }) => {
                 break
         }
 
-        return <img src={logo} width="50" height="50" style={{paddingLeft:"2rem",paddingRight:"8px"}} />
+        return <img src={logo} alt="logo" width="50" height="50" className={styles.logo} />
     }
 
     return (<div className={styles.boton}>

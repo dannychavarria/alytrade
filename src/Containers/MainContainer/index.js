@@ -5,8 +5,8 @@ import * as Components from '../../components'
 const useStyles = createUseStyles({
     MainContainer: {
         display: "table",
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         tableLayout: "auto",
         zIndex:-1
     },
@@ -20,6 +20,8 @@ const useStyles = createUseStyles({
         width: "80%",
         zIndex: 10,
         position: "sticky",
+        padding: "1rem 2.5rem 1rem 2.5rem",
+        verticalAlign: "top"
     },
     
 })
@@ -31,7 +33,7 @@ const MainContainer = ({ children }) => {
             <Components.SideBar />
         </div>
         <div className={styles.RightContainer}>
-        
+            <Components.Dashboard/>
         </div>
     </div>)
 }

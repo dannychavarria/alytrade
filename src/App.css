@@ -8,6 +8,11 @@ a {
   text-decoration: none;
 }
 
+body {
+  font-family: "Roboto";
+  color:white;
+}
+
 .App {
   text-align: center;
 }
