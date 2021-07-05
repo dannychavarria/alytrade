@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Alytrade",
+  "name": "Alytrade TM",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,15 +8,10 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "alytrade_icon.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+      "sizes": "870x870"
+    }    
   ],
   "start_url": ".",
   "display": "standalone",
