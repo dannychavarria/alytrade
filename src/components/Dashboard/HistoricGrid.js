@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 import btcPNG from '../../assets/img/btcLogo.png'
 import ltcPNG from '../../assets/img/ltcLogo.png'
@@ -8,6 +8,7 @@ import usdtPNG from '../../assets/img/usdtLogo.png'
 import xrpPNG from '../../assets/img/xrpLogo.png'
 import dogePNG from '../../assets/img/dogeLogo.png'
 import * as Colors from '../../constants/colors.json'
+import { useSelector } from 'react-redux'
 const useStyle = createUseStyles({
     gridContainer: {
         display: "flex",
@@ -18,7 +19,7 @@ const useStyle = createUseStyles({
         display: "flex",
         justifyContent: "space-between",
         background: Colors.selectorActive,
-        marginTop:"10px",
+        marginTop: "10px",
         padding: "5px",
         fontWeight: "Bold"
 
@@ -26,8 +27,17 @@ const useStyle = createUseStyles({
     table: {
         width: "100%",
         borderCollapse: "collapse",
-        '& tr': {
-            borderBottom: `solid ${Colors.tableBodyTextColor} 0.01px`
+        '& tbody': {
+            '&:before':{
+                content: '"-"',
+                lineHeight:"0.8rem",
+                display:"block",
+                color:"transparent"
+            }
+        },
+        '& tbody>tr': {
+            borderBottom: `solid ${Colors.tableBodyTextColor} 0.01px`,
+            color: Colors.tableBodyTextColor
         },
         '& td': {
             padding: "10px 0 10px 0",
@@ -38,13 +48,13 @@ const useStyle = createUseStyles({
 })
 
 const initialState = [
-    { date: 'may. 24, 2021', coin: 'btc', percentage: 3, gain: 0.0661464, usd: 1.45 },
-    { date: 'may. 24, 2021', coin: 'btc', percentage: 3, gain: 0.0661464, usd: 1.45 },
-    { date: 'may. 24, 2021', coin: 'btc', percentage: 3, gain: 0.0661464, usd: 1.45 },
+    { date: 'may. 24, 2021', currency: 'btc', percentage: 99, amount: 0.0661464, gainUsd: 1.45 },
 ]
 
 const HistoricGrid = ({ data }) => {
     const style = useStyle()
+    const plan = useSelector(state => state.plans[state.selectedPlan])
+    const interest = useSelector(state => state.plans[state.selectedPlan].interests)
     const coinLogo = (c) => {
 
         let logo = null
@@ -77,43 +87,52 @@ const HistoricGrid = ({ data }) => {
 
         return <img src={logo} alt="logo" width="15" height="15" style={{ paddingRight: "5px" }} />
     }
-
+    const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
     const buildRows = (dat) => {
         let workData = dat ? dat : initialState
 
-        const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+        /*amount(pin): 0.12
+        date(pin): "2021-08-09"
+        currency(pin): "BTC"
+        percentage(pin): 33.33
+        gainUsd(pin): 3945.372829573997 */
+
+        
         console.log("Join in")
         return workData.map((item, index) => {
             return <tr key={index}>
                 <td>{item.date}</td>
-                <td>{coinLogo(item.coin)}{item.coin}</td>
+                <td>{coinLogo(item.currency)}{item.currency}</td>
                 <td>{`${item.percentage} %`}</td>
-                <td>{item.gain}</td>
-                <td>{formatter.format(item.usd)}</td>
+                <td>{item.amount}</td>
+                <td>{formatter.format(item.gainUsd)}</td>
             </tr>
         })
     }
 
+    console.log("interest", interest)
     return (
         <div className={style.gridContainer}>
             <span><h2>Historial</h2></span>
             <div>
                 <table className={style.table}>
                     <thead>
-                        <th>Fecha</th>
-                        <th>Moneda</th>
-                        <th>Porcentaje</th>
-                        <th>Ganancia</th>
-                        <th>USD</th>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Moneda</th>
+                            <th>Porcentaje</th>
+                            <th>Ganancia</th>
+                            <th>USD</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        {buildRows(data)}
+                        {buildRows(interest)}
                     </tbody>
                 </table>
             </div>
             <div className={style.footer}>
-                <span>Total BTC: 0.0054</span>
-                <span>Total USD: $14.03</span>
+                <span>Total BTC: {plan.current}</span>
+                <span>Total USD: {formatter.format(plan.currentUsd)}</span>
             </div>
         </div>
     )

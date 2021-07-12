@@ -9,6 +9,8 @@ import alyPNG from '../../assets/img/alyLogo.png'
 import usdtPNG from '../../assets/img/usdtLogo.png'
 import xrpPNG from '../../assets/img/xrpLogo.png'
 import dogePNG from '../../assets/img/dogeLogo.png'
+import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const useStyle = createUseStyles({
     Container: {
@@ -58,6 +60,8 @@ const initialState = {
     currentAmount: 2.60581457,
 }
 
+
+
 const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment, symbol }) => {
 
     const coinLogo = (c) => {
@@ -92,7 +96,7 @@ const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment,
 
         return <img src={logo} alt="logo" width="50" height="50" style={{ paddingRight: "10px" }} />
     }
-
+    const plan = useSelector(state=> state.plans[state.selectedPlan])
     const style = useStyle()
 
     const percentage = () => {
@@ -106,34 +110,34 @@ const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment,
         <div className={style.summaryData}>
             <div className={style.coinNameText}>
                 <span>
-                    {coinLogo(symbol ? symbol : initialState.symbol)}
+                    {coinLogo(plan.symbol ? plan.symbol : initialState.symbol)}
                 </span>
                 <span>
-                    {coinName ? coinName : initialState.coinName}
+                    {plan.name ?  `Plan ${plan.name}` : initialState.coinName}
                 </span>
             </div>
             <div className={style.summaryContainer}>
-                <span className={style.summaryTextLabel}>Fecha Incio</span><br /><span>{startDate ? startDate : initialState.startDate}</span>
+                <span className={style.summaryTextLabel}>Fecha Incio</span><br /><span>{plan.start_date ? moment(plan.start_date).format('DD MMM. YYYY') : initialState.startDate}</span>
             </div>
             <div className={style.summaryContainer}>
-                <span className={style.summaryTextLabel}>Monto a Ganar</span><br /><span>{amountToGain ? `${amountToGain} ${symbol}` : `${initialState.amountToGain} ${initialState.symbol}`}</span>
+                <span className={style.summaryTextLabel}>Monto a Ganar</span><br /><span>{plan.toGain ? `${plan.toGain} ${plan.symbol}` : `${initialState.amountToGain} ${initialState.symbol}`}</span>
             </div>
             <div className={style.summaryContainer}>
-                <span className={style.summaryTextLabel}>Monto Invertido</span><br /><span>{investment ? `${investment} ${symbol}` : `${initialState.investment} ${initialState.symbol}`}</span>
+                <span className={style.summaryTextLabel}>Monto Invertido</span><br /><span>{plan.amount ? `${plan.amount} ${plan.symbol}` : `${initialState.investment} ${initialState.symbol}`}</span>
             </div>
             <div className={style.summaryContainer}>
-                <span className={style.summaryTextLabel}>Restante</span><br /><span>{Number(amountToGain) && Number(investment) ? `${amountToGain - investment}` : `${(initialState.amountToGain - initialState.investment).toPrecision(8)} ${initialState.symbol}`}</span>
+                <span className={style.summaryTextLabel}>Restante</span><br /><span>{Number(plan.remaining) ? `${plan.remaining} ${plan.symbol}` : `${(initialState.amountToGain - initialState.investment).toPrecision(8)} ${initialState.symbol}`}</span>
             </div>
         </div>
         <div>
-            <ProgressBar bgcolor={Colors.btcColor} completed={percentage()} />
+            <ProgressBar bgcolor={Colors.btcColor} completed={plan.percentage} />
         </div>
         <div className={style.footerContainer}>
             <div className={style.footerText}>
-                {currentAmount ? currentAmount : initialState.currentAmount} {symbol ? symbol : initialState.symbol} / {amountToGain ? amountToGain : initialState.amountToGain} {symbol ? symbol : initialState.symbol}
+                {plan.toGain - plan.remaining} {plan.symbol} / {plan.remaining} {plan.symbol}
             </div>
             <div className={style.footerText}>
-                Ganado ({`${percentage()} %`})
+                Ganado ({`${plan.percentage} %`})
             </div>
         </div>
     </div>)

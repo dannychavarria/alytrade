@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { useHistory } from 'react-router-dom'
-/*
-background: url(images/comment-author.gif) no-repeat scroll 7px 7px;
-padding-left:30px;
-*/
 import user from '../../assets/icon/user.svg'
 import lock from '../../assets/icon/lock.svg'
 import mail from '../../assets/icon/mail.svg'
-
+import {  Login } from '../../reducers/DashboardReducer'
+import { useDispatch } from 'react-redux'
 const useStyle = createUseStyles({
     Container: {
         display: 'flex',
@@ -55,26 +52,55 @@ const useStyle = createUseStyles({
         }
     }
 })
-
-const LoginContainer = () => {
+const initialState = {
+    email: 'fedoral10@gmail.com',
+    password: 'empires1',
+}
+const LoginContainer = (props) => { 
     const style = useStyle()
     const history = useHistory()
+    const [state, setState] = useState(initialState)
+    const dispatcher = useDispatch()
+    const onChangeEvent = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const loginEvent = (e) => {
         e.preventDefault()
-        console.log("asdfasd")
-        localStorage.setItem("token", "prueba")
-        history.push('/dashboard')
+        // const loginDiv = document.getElementById('login')
+        // loginDiv.cursor='wait'
+        console.log("Entro al evento")
+        console.log(state)
+
+        dispatcher(Login(state.email,state.password,()=>{
+            history.push('/dashboard')
+            console.log('hizo el push')
+        }))
+        /*api.login(state.email,state.password).then(token => {
+            sessionStorage.setItem("token", token)
+            
+            loginDiv.cursor='default'
+        }).catch(err => {
+            console.error(err)
+            loginDiv.cursor='default'
+        })*/
     }
 
     return (<>
-        <div className={style.Container}>
+        <div className={style.Container} id="login">
             <div>
                 <label>Email</label>
-                <input name="email" type="text" placeholder="Type your Email" />
+                <input name="email" type="text" placeholder="Type your Email"
+                    onChange={onChangeEvent} value={state['email']}
+                />
 
                 <label>Password</label>
-                <input name="password" type="password" placeholder="Type your Password" />
+                <input name="password" type="password" placeholder="Type your Password"
+                    onChange={onChangeEvent} value={state['password']}
+                />
                 <button onClick={loginEvent}>Log In</button>
             </div>
         </div>
