@@ -10,8 +10,8 @@ const ProgressBar = ({ bgcolor, completed, showPercentage }) => {
         backgroundColor: Colors.selectorActive,
         borderRadius: 50,
         margin: "10px 0 10px 0",
-        border: `solid ${bgcolor}`,
-        borderWidth: '1px'
+        border: `1px solid ${bgcolor}`,
+        //borderWidth: '1px'
     }
 
     const fillerStyles = {

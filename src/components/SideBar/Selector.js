@@ -2,6 +2,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 
 import btcPNG from '../../assets/img/btcLogo.png'
+import ethPNG from '../../assets/img/ethLogo.png'
 import ltcPNG from '../../assets/img/ltcLogo.png'
 import dashPNG from '../../assets/img/dashLogo.png'
 import alyPNG from '../../assets/img/alyLogo.png'
@@ -45,7 +46,7 @@ const useStyles = createUseStyles({
         fontSize: "1.2rem",
         position: "sticky",
         zIndex: 9,
-
+        margin: "25px 0 0 0"
     },
     texto: {
         display: "flex",
@@ -56,24 +57,27 @@ const useStyles = createUseStyles({
     },
     boton: {
         display: "block",
-        margin: "0.5rem 0 0.5rem 0"
+        margin: "0 0 0 0"
     },
     logo: {
-        paddingLeft:"2rem",
-        paddingRight:"8px"
+        paddingLeft: "2rem",
+        paddingRight: "8px"
     }
 })
 
-const Selector = ({ text, selected, coin }) => {
+const Selector = ({ text, selected, coin, onClick }) => {
 
     const styles = useStyles()
 
     const coinLogo = (c) => {
 
         let logo = null
-        switch (c) {
+        switch (c?.toLowerCase()) {
             case 'btc':
                 logo = btcPNG
+                break
+            case 'eth':
+                logo = ethPNG
                 break
             case 'ltc':
                 logo = ltcPNG
@@ -111,7 +115,7 @@ const Selector = ({ text, selected, coin }) => {
         <div className={selected ? styles.block : styles.blockInactive} >
             <div className={styles.texto}>
                 {coinLogo(coin)}
-                <a href="#">{text ? text : 'Empty'}</a>
+                <a href="#" onClick={onClick}>{text ? text : 'Empty'}</a>
             </div>
         </div>
     </div>)

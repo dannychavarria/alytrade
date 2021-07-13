@@ -109,8 +109,6 @@ const HistoricGrid = ({ data }) => {
             </tr>
         })
     }
-
-    console.log("interest", interest)
     return (
         <div className={style.gridContainer}>
             <span><h2>Historial</h2></span>
@@ -131,7 +129,7 @@ const HistoricGrid = ({ data }) => {
                 </table>
             </div>
             <div className={style.footer}>
-                <span>Total BTC: {plan.current}</span>
+                <span>Total {plan.symbol}: {plan.current}</span>
                 <span>Total USD: {formatter.format(plan.currentUsd)}</span>
             </div>
         </div>

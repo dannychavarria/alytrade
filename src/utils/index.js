@@ -1,15 +1,15 @@
 const axios = require('axios')
 
 const currencies = {
-     1: { name: 'Bitcoin', symbol: 'BTC' },
-     2: { name: 'Ethereum', symbol: 'ETH' },
-     3: { name: 'Litecoin', symbol: 'LTC' },
-     4: { name: 'Dash', symbol: 'DASH' },
-     5: { name: 'Tether', symbol: 'USDT' },
-     6: { name: 'DogeCoin', symbol: 'DOGE' },
-     7: { name: 'Alycoin', symbol: 'ALY' },
-     8: { name: 'Ripple', symbol: 'XRP' },
-     9: { name: 'Binance', symbol: 'BNB' },
+     1: { name: 'Bitcoin', symbol: 'BTC', color: '#f7931a' },
+     2: { name: 'Ethereum', symbol: 'ETH',color: '#627eea' },
+     3: { name: 'Litecoin', symbol: 'LTC', color: '#274778' },
+     4: { name: 'Dash', symbol: 'DASH', color: '#2573c2'},
+     5: { name: 'Tether', symbol: 'USDT', color: '#f7931a' },
+     6: { name: 'DogeCoin', symbol: 'DOGE', color: '#ffcb09' },
+     7: { name: 'Alycoin', symbol: 'ALY', color: '#f7931a' },
+     8: { name: 'Ripple', symbol: 'XRP', color: '#f7931a' },
+     9: { name: 'Binance', symbol: 'BNB', color: '#f7931a' },
 }
 
 export const getCurrencyDataById = (id) => currencies[id]

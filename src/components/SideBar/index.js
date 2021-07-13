@@ -2,6 +2,8 @@ import React from 'react'
 import Selector from './Selector'
 import { createUseStyles } from 'react-jss'
 import logoSVG from '../../assets/img/Alytrade_Orbe.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeSelectedPlan } from '../../reducers/DashboardReducer'
 
 const useStyles = createUseStyles({
     SideBar: {
@@ -38,6 +40,13 @@ const useStyles = createUseStyles({
 
 const SideBar = () => {
     const styles = useStyles()
+    const plans = useSelector(state=> state.plans)
+    const selectedPlan = useSelector(state=> state.selectedPlan)
+    const dispatcher = useDispatch()
+
+    const clickHanlder= (index) => {
+        dispatcher(changeSelectedPlan(index))
+    }
 
     return (<div className={styles.SideBar}>
         <div className={styles.SideBarUp}>
@@ -47,11 +56,14 @@ const SideBar = () => {
         </div>
         <div className={styles.SideBarDown}>
             <div className={styles.Botonera}>
-                <Selector coin="btc" text="Plan Bitcoin" selected />
+                {plans ? plans.map((item,index)=>{
+                    return <Selector key={index} onClick={()=>clickHanlder(index)} coin={item.symbol} text={`Plan ${item.symbol}`} selected={index === selectedPlan ? true : undefined} />
+                }):''}
+                {/*<Selector coin="btc" text="Plan Bitcoin" selected />
                 <Selector coin="eth" text="Plan Etherium"/>
                 <Selector coin="ltc" text="Plan Litecoin"/>
                 <Selector coin="dash" text="Plan Dash"/>
-                <Selector coin="doge" text="Plan Dogecoin"/>
+            <Selector coin="doge" text="Plan Dogecoin"/>*/}
             </div>
         </div>
     </div>)

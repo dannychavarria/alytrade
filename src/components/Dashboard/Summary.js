@@ -3,6 +3,7 @@ import ProgressBar from '../ProgressBar'
 import { createUseStyles } from 'react-jss'
 import * as Colors from '../../constants/colors.json'
 import btcPNG from '../../assets/img/btcLogo.png'
+import ethPNG from '../../assets/img/ethLogo.png'
 import ltcPNG from '../../assets/img/ltcLogo.png'
 import dashPNG from '../../assets/img/dashLogo.png'
 import alyPNG from '../../assets/img/alyLogo.png'
@@ -52,12 +53,12 @@ const useStyle = createUseStyles({
 })
 
 const initialState = {
-    coinName: "Plan Bitcoin",
+    coinName: "Plan ",
     startDate: "13 May. 2020",
-    amountToGain: 4.40975,
-    investment: 2.20488,
+    amountToGain: 0,
+    investment: 0,
     symbol: "BTC",
-    currentAmount: 2.60581457,
+    currentAmount: 0,
 }
 
 
@@ -70,6 +71,9 @@ const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment,
         switch (c.toLowerCase()) {
             case 'btc':
                 logo = btcPNG
+                break
+            case 'eth':
+                logo = ethPNG
                 break
             case 'ltc':
                 logo = ltcPNG
@@ -99,12 +103,12 @@ const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment,
     const plan = useSelector(state=> state.plans[state.selectedPlan])
     const style = useStyle()
 
-    const percentage = () => {
-        const current = currentAmount ? currentAmount : initialState.currentAmount
-        const toGain = amountToGain ? amountToGain : initialState.amountToGain
+    // const percentage = () => {
+    //     const current = currentAmount ? currentAmount : initialState.currentAmount
+    //     const toGain = amountToGain ? amountToGain : initialState.amountToGain
 
-        return ((current * 100) / toGain).toFixed(2)
-    }
+    //     return ((current * 100) / toGain).toFixed(2)
+    // }
 
     return (<div className={style.Container}>
         <div className={style.summaryData}>
@@ -130,7 +134,7 @@ const Summary = ({ coinName, currentAmount, startDate, amountToGain, investment,
             </div>
         </div>
         <div>
-            <ProgressBar bgcolor={Colors.btcColor} completed={plan.percentage} />
+            <ProgressBar bgcolor={plan.color} completed={plan.percentage} />
         </div>
         <div className={style.footerContainer}>
             <div className={style.footerText}>

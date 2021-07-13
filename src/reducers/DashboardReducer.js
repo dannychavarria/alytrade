@@ -6,7 +6,8 @@ const ACTIONS = {
     DASHBOARD_SET_USERINFO: 'DASHBOARD_SET_USERINFO',
     DASHBOARD_SET_PLANS: 'DASHBOARD_SET_PLANS',
     DASHBOARD_SET_GRAPHDATA: 'DASHBOARD_SET_GRAPHDATA',
-    DASHBOARD_SET_USD_PRICES: 'DASHBOARD_SET_USD_PRICES'
+    DASHBOARD_SET_USD_PRICES: 'DASHBOARD_SET_USD_PRICES',
+    DASHBOARD_SET_SELECTED_PLAN: 'DASHBOARD_SET_SELECTED_PLAN'
 }
 
 const initialState = {
@@ -41,6 +42,11 @@ export const DashboardReducer = (state = initialState, action) => {
                 ...state,
                 prices: payload
             }
+        case ACTIONS.DASHBOARD_SET_SELECTED_PLAN:
+            return {
+                ...state,
+                selectedPlan: payload
+            }
         default:
             return state
     }
@@ -60,26 +66,33 @@ export const Login = (email, password, callback) => {
 }
 
 export const getDashboardInformation = () => {
+
     return async (dispatch, getState) => {
 
         const { userInfo } = getState()
 
         const prices = await getCurrencyPrices()
         dispatch(setCurrencyPrices(prices))
-        console.log(prices)
-        const response = await Services.getDashboard(userInfo.token)
 
+        const response = await Services.getDashboard(userInfo.token)
+        const currentReduce = (acc, cur) => {
+            return { amount: acc.amount + cur.amount }
+        }
+        
         const dashboardData = response.map(item => {
             item.toGain = item.amount * item.plan.months * item.plan.percentage
             
-            item.remaining = (item.toGain - item.interests.reduce((acc, cur) => acc.amount + cur.amount, { amount: 0 })) || item.toGain
+            item.current = item.interests.reduce(currentReduce, { amount: 0 }).amount
+            
+            item.remaining = (item.toGain - item.current) || item.toGain
+
             item.percentage = 100 - ((item.remaining * 100) / item.toGain)
             item.percentage = Number(item.percentage.toFixed(2))
-            
+
             item.symbol = getCurrencyDataById(item.id_currency).symbol
             item.name = getCurrencyDataById(item.id_currency).name
+            item.color = getCurrencyDataById(item.id_currency).color
 
-            item.current = item.interests.reduce((acc, cur) => acc.amount + cur.amount, { amount: 0 })
             item.currentUsd = item.current * Number(prices[item.symbol])
 
             item.interests = item.interests.map(int => {
@@ -92,6 +105,7 @@ export const getDashboardInformation = () => {
             return item
         })
 
+
         dispatch({ type: ACTIONS.DASHBOARD_SET_PLANS, payload: dashboardData })
         dispatch(getGraphData())
     }
@@ -102,9 +116,9 @@ export const getGraphData = () => {
         const { selectedPlan, plans, userInfo } = getState()
         const plan = plans[selectedPlan]
         const response = await Services.getGraphInfo(userInfo.token, plan.id_currency)
-
+        console.log(response)
         const graphData = {
-            labels: response.map(item => moment(item.datetime).format('ddd. DD MMM.')),
+            labels: response.map(item => moment(item.datetime).add(1,'day').format('ddd. DD MMM.')),
             data: response.map(item => item.price)
         }
         console.log(graphData)
@@ -114,4 +128,8 @@ export const getGraphData = () => {
 
 export const setCurrencyPrices = (prices) => {
     return { type: ACTIONS.DASHBOARD_SET_USD_PRICES, payload: prices }
+}
+
+export const changeSelectedPlan = (index) => {
+    return { type: ACTIONS.DASHBOARD_SET_SELECTED_PLAN, payload: index }
 }

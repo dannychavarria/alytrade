@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 import * as Chartjs from 'chart.js'
 import * as Colors from '../../constants/colors.json'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getGraphData } from '../../reducers/DashboardReducer'
 Chartjs.Chart.register(...Chartjs.registerables)
 
@@ -32,14 +32,14 @@ const initialState = {
 
 const Graph = ({ labels, data }) => {
     const style = useStyle()
-    const graph = useRef()
 
+    const selectedPlan = useSelector(state=>state.selectedPlan)
     const plan = useSelector(state => state.plans[state.selectedPlan])
     const graphData = useSelector(state => {
         const currencyId = state?.plans[state?.selectedPlan]?.id_currency
         return state?.graphData[currencyId]
     })
-    console.log(graphData)
+    const dispatcher = useDispatch()
     const buildGraph = () => {
         const container = document.getElementById('chartCont')
         container.innerHTML = null;
@@ -56,7 +56,7 @@ const Graph = ({ labels, data }) => {
                 datasets: [{
                     label: false,
                     data: graphData ? graphData.data : initialState.data,
-                    borderColor: Colors.btcColor,
+                    borderColor: plan.color,
                     borderWidth: 3,
                     tension: 0.1
                 }]
@@ -82,11 +82,18 @@ const Graph = ({ labels, data }) => {
         if (graphData)
             buildGraph()
     }, [graphData])
+    useEffect(()=>{
+        if(selectedPlan)
+            dispatcher(getGraphData())
+    },[selectedPlan])
 
     return (<div className={style.graphContainer}>
-        <span><h2>Seguimiento BTC</h2></span>
+        <span><h2>Seguimiento {plan.symbol}</h2></span>
         <div id="chartCont" style={{ position: "relative", padding: "5px", marginTop: "10px", height: "30vh", width: "70vw" }}>
 
+        </div>
+        <div style={{display:'flex',width:'100%', justifyContent: 'flex-end', marginTop: "10px"}}>
+            <div style={{height: "15px",width: "30px",backgroundColor:plan.color, marginRight: '5px'}}></div>{plan.name}
         </div>
     </div>
     )
