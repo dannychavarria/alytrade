@@ -31,7 +31,6 @@ const useStyles = createUseStyles({
 
 const MainContainer = ({ children }) => {
     const dispatcher = useDispatch()
-    const userInfo = useSelector(state => state.userInfo)
     const plans = useSelector(state => state?.plans?.length ? state.plans : undefined)
 
     useEffect(() => {

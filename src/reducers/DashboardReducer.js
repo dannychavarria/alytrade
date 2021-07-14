@@ -7,7 +7,8 @@ const ACTIONS = {
     DASHBOARD_SET_PLANS: 'DASHBOARD_SET_PLANS',
     DASHBOARD_SET_GRAPHDATA: 'DASHBOARD_SET_GRAPHDATA',
     DASHBOARD_SET_USD_PRICES: 'DASHBOARD_SET_USD_PRICES',
-    DASHBOARD_SET_SELECTED_PLAN: 'DASHBOARD_SET_SELECTED_PLAN'
+    DASHBOARD_SET_SELECTED_PLAN: 'DASHBOARD_SET_SELECTED_PLAN',
+    DASHBOARD_LOGOUT: 'DASHBOARD_LOGOUT',
 }
 
 const initialState = {
@@ -47,6 +48,8 @@ export const DashboardReducer = (state = initialState, action) => {
                 ...state,
                 selectedPlan: payload
             }
+        case ACTIONS.DASHBOARD_LOGOUT: 
+            return initialState
         default:
             return state
     }
@@ -132,4 +135,8 @@ export const setCurrencyPrices = (prices) => {
 
 export const changeSelectedPlan = (index) => {
     return { type: ACTIONS.DASHBOARD_SET_SELECTED_PLAN, payload: index }
+}
+
+export const logOut = () => {
+    return { type: ACTIONS.DASHBOARD_LOGOUT}
 }

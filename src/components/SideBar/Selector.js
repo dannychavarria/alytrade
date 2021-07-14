@@ -61,7 +61,17 @@ const useStyles = createUseStyles({
     },
     logo: {
         paddingLeft: "2rem",
-        paddingRight: "8px"
+        paddingRight: "8px",
+        cursor:"pointer"
+    },
+    botonSelector: {
+        border: "0",
+        color:"white",
+        background: "transparent",
+        fontSize: "1.2rem",
+        width:"100%",
+        textAlign: "left",
+        cursor:"pointer"
     }
 })
 
@@ -69,7 +79,7 @@ const Selector = ({ text, selected, coin, onClick }) => {
 
     const styles = useStyles()
 
-    const coinLogo = (c) => {
+    const coinLogo = (c,onClick) => {
 
         let logo = null
         switch (c?.toLowerCase()) {
@@ -102,7 +112,7 @@ const Selector = ({ text, selected, coin, onClick }) => {
                 break
         }
 
-        return <img src={logo} alt="logo" width="50" height="50" className={styles.logo} />
+        return <img src={logo} alt="logo" width="50" height="50" onClick={onClick} className={styles.logo} />
     }
 
     return (<div className={styles.boton}>
@@ -114,8 +124,8 @@ const Selector = ({ text, selected, coin, onClick }) => {
 
         <div className={selected ? styles.block : styles.blockInactive} >
             <div className={styles.texto}>
-                {coinLogo(coin)}
-                <a href="#" onClick={onClick}>{text ? text : 'Empty'}</a>
+                {coinLogo(coin,onClick)}
+                <p className={styles.botonSelector} onClick={onClick}>{text ? text : 'Empty'}</p>
             </div>
         </div>
     </div>)

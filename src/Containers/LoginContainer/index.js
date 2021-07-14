@@ -3,7 +3,6 @@ import { createUseStyles } from 'react-jss'
 import { useHistory } from 'react-router-dom'
 import user from '../../assets/icon/user.svg'
 import lock from '../../assets/icon/lock.svg'
-import mail from '../../assets/icon/mail.svg'
 import {  Login } from '../../reducers/DashboardReducer'
 import { useDispatch } from 'react-redux'
 const useStyle = createUseStyles({

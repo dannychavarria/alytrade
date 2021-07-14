@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createUseStyles } from 'react-jss'
+import ethPNG from '../../assets/img/ethLogo.png'
 import btcPNG from '../../assets/img/btcLogo.png'
 import ltcPNG from '../../assets/img/ltcLogo.png'
 import dashPNG from '../../assets/img/dashLogo.png'
@@ -62,6 +63,9 @@ const HistoricGrid = ({ data }) => {
             case 'btc':
                 logo = btcPNG
                 break
+            case 'eth':
+                logo = ethPNG
+                break;
             case 'ltc':
                 logo = ltcPNG
                 break

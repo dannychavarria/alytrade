@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
 import * as Chartjs from 'chart.js'
-import * as Colors from '../../constants/colors.json'
 import { useSelector, useDispatch } from 'react-redux'
 import { getGraphData } from '../../reducers/DashboardReducer'
 Chartjs.Chart.register(...Chartjs.registerables)
@@ -49,7 +48,7 @@ const Graph = ({ labels, data }) => {
         canvasChart.style.cssText = null
         container.appendChild(canvasChart)
         const ctx = canvasChart.getContext("2d") //document.getElementById('chart').getContext("2d") //graph.current.getContext("2d")
-        const chart = new Chartjs.Chart(ctx, {
+        new Chartjs.Chart(ctx, {
             type: 'line',
             data: {
                 labels: graphData ? graphData.labels : initialState.labels,
@@ -81,11 +80,11 @@ const Graph = ({ labels, data }) => {
     useEffect(() => {
         if (graphData)
             buildGraph()
-    }, [graphData])
+    }, [graphData,buildGraph])
     useEffect(()=>{
         if(selectedPlan)
             dispatcher(getGraphData())
-    },[selectedPlan])
+    },[selectedPlan,dispatcher])
 
     return (<div className={style.graphContainer}>
         <span><h2>Seguimiento {plan.symbol}</h2></span>

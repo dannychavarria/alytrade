@@ -57,7 +57,7 @@ const SideBar = () => {
         <div className={styles.SideBarDown}>
             <div className={styles.Botonera}>
                 {plans ? plans.map((item,index)=>{
-                    return <Selector key={index} onClick={()=>clickHanlder(index)} coin={item.symbol} text={`Plan ${item.symbol}`} selected={index === selectedPlan ? true : undefined} />
+                    return <Selector key={index} onClick={()=>clickHanlder(index)} coin={item.symbol} text={`Plan ${item.name}`} selected={index === selectedPlan ? true : undefined} />
                 }):''}
                 {/*<Selector coin="btc" text="Plan Bitcoin" selected />
                 <Selector coin="eth" text="Plan Etherium"/>
