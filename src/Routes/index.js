@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import * as Containers from '../Containers'
 import { useSelector } from 'react-redux';
+import { LoginView } from 'modules/global/views';
 
 
 const PrivateRoute = ({ children, isLogged, ...rest }) => {
@@ -41,7 +42,7 @@ const Routes = () => {
       }}
       />
       <Route path="/login">
-        <Containers.LoginContainer />
+        <LoginView />
       </Route>
       <PrivateRoute isLogged={IsLogged()  } path="/dashboard">
         <Containers.MainContainer />

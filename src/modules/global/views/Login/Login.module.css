@@ -1,0 +1,48 @@
+/* Login view */
+.login {
+	display: grid;
+	flex-grow: 1;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 100%;
+}
+
+/* Left panel */
+.leftPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.logo {
+	margin: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
+}
+
+.form {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	color: var(--text-dark);
+	font-size: 1.5rem;
+	margin: 1rem;
+}
+
+.span {
+	color: var(--text-dark-light);
+	margin: 1rem;
+    max-width: 19rem;
+    text-align: center;
+}
+
+.input {
+    width: 100%;
+}
+
+/* Right panel */
+.rightPanel {
+}

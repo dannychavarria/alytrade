@@ -1,0 +1,45 @@
+.textField {
+	border: none;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+}
+
+.input {
+	display: flex;
+	flex-direction: row;
+	background-color: #fefefe;
+	padding: 0.25rem;
+	border: 0.125rem solid var(--text-dark-light);
+	border-radius: 1rem;
+	align-items: center;
+	width: 100%;
+}
+
+.prevIcon {
+	color: var(--text-dark);
+	margin: 0.125rem;
+	font-size: 1.125rem;
+}
+
+.input input {
+	border: none;
+	flex-grow: 1;
+	background-color: var(--transparent);
+	padding: 0.125rem 0.25rem;
+	color: var(--text-dark);
+	font-size: 1rem;
+}
+
+.input input:focus {
+	outline: none;
+}
+
+.error {
+	padding: 0;
+	margin: 0.125rem 0 0.25rem;
+	font-size: 0.75rem;
+	color: var(--danger);
+}
