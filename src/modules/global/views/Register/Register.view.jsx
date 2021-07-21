@@ -75,6 +75,7 @@ const RegisterView = ({ className = '' }) => {
 							placeholder='Correo electrónico'
 							className={styles.input}
 							prevIcon={<FiMail />}
+							type='email'
 						/>
 
 						<div className={styles.columns}>
@@ -140,6 +141,10 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								prevIcon={<FaCoins />}
 								type='select'
+								options={[
+									{ label: 'Alycoin', value: 'ALY' },
+									{ label: 'Bitcoin', value: 'BTC' },
+								]}
 							/>
 						</div>
 

@@ -21,6 +21,7 @@ const TextField = ({
 	id = '',
 	label = '',
 	type = 'text',
+	options = [],
 	error = '',
 	prevIcon = null,
 	afterIcon = null,
@@ -39,11 +40,25 @@ const TextField = ({
 			<div className={styles.input}>
 				{prevIcon && <i className={styles.icon}>{prevIcon}</i>}
 
-				<input
-					type={type === 'password' && isVisible ? 'text' : type}
-					id={id}
-					{...rest}
-				/>
+				{type === 'select' ? (
+					<select id={id} {...rest}>
+						{options.map(({ label, value, disabled }, index) => (
+							<option
+								key={`${id}_${index}`}
+								value={value}
+								disabled={disabled}
+								hidden={disabled}>
+								{label}
+							</option>
+						))}
+					</select>
+				) : (
+					<input
+						type={type === 'password' && isVisible ? 'text' : type}
+						id={id}
+						{...rest}
+					/>
+				)}
 
 				{type === 'password' ? (
 					<i className={classNames(styles.icon, styles.iconPassword)}>
