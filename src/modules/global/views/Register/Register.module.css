@@ -1,0 +1,120 @@
+.parent {
+	align-items: center;
+	background-color: var(--primary-dark);
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+	max-height: 100%;
+}
+
+/* Register view */
+.register {
+	background-color: var(--bg-light);
+	border-radius: 1rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: auto 0;
+	overflow: hidden;
+}
+
+/* Left panel */
+.leftPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 2rem;
+}
+
+.logo {
+	margin: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
+}
+
+.leftPanel .span {
+	color: var(--text-light-light);
+	font-weight: 600;
+	margin: 1rem;
+}
+
+/* Right panel */
+.rightPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0 1rem;
+}
+
+.title {
+	color: var(--text-dark);
+	font-size: 1.5rem;
+	margin: 1rem;
+}
+
+.span {
+	color: var(--text-dark-light);
+	max-width: 19rem;
+	text-align: center;
+}
+
+.input {
+	margin: 0.5rem 0;
+	width: 100%;
+}
+
+.columns {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+	width: 100%;
+}
+
+.conditions {
+	align-items: center;
+	color: var(--text-dark-light);
+	display: flex;
+	flex-direction: row;
+	margin: 0.5rem 0;
+}
+
+.conditions input[type='checkbox'] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--transparent);
+	border-radius: 0.25rem;
+	border: 0.125rem solid var(--secondary);
+	cursor: pointer;
+	margin-right: 1rem;
+	padding: 0.5rem;
+}
+
+.conditions input[type='checkbox']:checked {
+	background-color: var(--secondary);
+	box-shadow: 0 0 0.5rem var(--secondary);
+}
+
+.conditions span span {
+	color: var(--primary);
+	cursor: pointer;
+}
+
+.submit {
+	margin: 1rem;
+	min-width: 14rem;
+}
+
+.poweredBy {
+	margin: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
+}
