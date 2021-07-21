@@ -3,6 +3,8 @@ import { createUseStyles } from 'react-jss'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../../constants/colors.json'
 import { logOut } from '../../reducers/DashboardReducer'
+import UserMenu from '../UserMenu'
+
 const useStyles = createUseStyles({
     container: {
         display: "flex",
@@ -60,9 +62,7 @@ const Header = () => {
 
         // return container
 
-        return <div id="menu" className={styles.menuContainer}>
-            <strong onClick={()=> dispatcher(logOut()) }>Cerrar Sesión</strong>
-        </div>
+        return <UserMenu/>
     }
 
     const clickHandler = (e) => {
