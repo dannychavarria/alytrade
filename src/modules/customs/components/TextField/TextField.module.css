@@ -1,36 +1,44 @@
 .textField {
+	align-items: center;
 	border: none;
 	display: flex;
 	flex-direction: column;
-	margin: 0;
-	padding: 0;
-	align-items: center;
+}
+
+.label {
+	color: var(--text-dark);
+	font-size: 1rem;
+	margin: 0.125rem 0 0.25rem;
 }
 
 .input {
+	align-items: center;
+	background-color: var(--bg-light);
+	border-radius: 1rem;
+	border: 0.125rem solid var(--text-dark-light);
 	display: flex;
 	flex-direction: row;
-	background-color: #fefefe;
 	padding: 0.25rem;
-	border: 0.125rem solid var(--text-dark-light);
-	border-radius: 1rem;
-	align-items: center;
 	width: 100%;
 }
 
-.prevIcon {
-	color: var(--text-dark);
-	margin: 0.125rem;
+.icon {
+	color: var(--text-dark-light);
 	font-size: 1.125rem;
+	margin: 0.125rem 0.5rem;
+}
+
+.iconPassword {
+	cursor: pointer;
 }
 
 .input input {
-	border: none;
-	flex-grow: 1;
 	background-color: var(--transparent);
-	padding: 0.125rem 0.25rem;
+	border: none;
 	color: var(--text-dark);
+	flex-grow: 1;
 	font-size: 1rem;
+	padding: 0.125rem 0.25rem;
 }
 
 .input input:focus {
@@ -38,8 +46,7 @@
 }
 
 .error {
-	padding: 0;
-	margin: 0.125rem 0 0.25rem;
-	font-size: 0.75rem;
 	color: var(--danger);
+	font-size: 0.75rem;
+	margin: 0.125rem 0 0.25rem;
 }

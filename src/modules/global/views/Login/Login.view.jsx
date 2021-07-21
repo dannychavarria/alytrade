@@ -4,24 +4,24 @@ import { classNames } from 'modules/customs/utils'
 import React from 'react'
 import styles from './Login.module.css'
 import { useLogin } from './useLogin.hook'
-import { FiMail } from 'react-icons/fi'
+import { FiLock, FiMail } from 'react-icons/fi'
 
-const LoginView = () => {
+const LoginView = ({ className = '' }) => {
 	const { login } = useLogin()
 
 	return (
-		<div className={classNames(styles.login)}>
-			<div className={classNames(styles.leftPanel)}>
+		<div className={classNames(styles.login, className)}>
+			<div className={styles.leftPanel}>
 				<img
 					src={alyTradeOrbe}
 					alt='AlyTrade'
-					className={classNames(styles.logo)}
+					className={styles.logo}
 				/>
 
-				<form onSubmit={login} className={classNames(styles.form)}>
-					<h2 className={classNames(styles.title)}>Bienvenido</h2>
+				<form onSubmit={login} className={styles.form}>
+					<h2 className={styles.title}>Bienvenido</h2>
 
-					<span className={classNames(styles.span)}>
+					<span className={styles.span}>
 						Por favor ingrese su nombre de usuario y su contraseña
 						para acceder al sistema.
 					</span>
@@ -29,11 +29,17 @@ const LoginView = () => {
 					<TextField
 						placeholder='Correo electrónico'
 						error='El correo ingresado no es valido'
-						className={classNames(styles.input)}
+						className={styles.input}
 						prevIcon={<FiMail />}
+						label='Correo de usuario'
 					/>
 
-					<TextField placeholder='Contraseña' />
+					<TextField
+						placeholder='Contraseña'
+						className={styles.input}
+						type='password'
+						prevIcon={<FiLock />}
+					/>
 
 					<Button label='Ingresar' />
 				</form>
@@ -43,7 +49,7 @@ const LoginView = () => {
 				<div></div>
 			</div>
 
-			<div className={classNames(styles.rightPanel)}></div>
+			<div className={styles.rightPanel}></div>
 		</div>
 	)
 }

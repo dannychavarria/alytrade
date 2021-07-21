@@ -49,14 +49,14 @@
 	--danger-dark: #;
 
 	/* Color background-light */
-	--background-light-light: #fff;
-	--background-light: #fefefe;
-	--background-light-dark: #aeaeae;
+	--bg-light-light: #fff;
+	--bg-light: #fefefe;
+	--bg-light-dark: #aeaeae;
 
 	/* Color background-dark */
-	--background-dark-light: #;
-	--background-dark: #;
-	--background-dark-dark: #;
+	--bg-dark-light: #;
+	--bg-dark: #;
+	--bg-dark-dark: #;
 
 	/* Color text-light */
 	--text-light-light: #fff;
