@@ -28,10 +28,8 @@ const LoginView = ({ className = '' }) => {
 
 					<TextField
 						placeholder='Correo electrónico'
-						error='El correo ingresado no es valido'
 						className={styles.input}
 						prevIcon={<FiMail />}
-						label='Correo de usuario'
 					/>
 
 					<TextField
@@ -41,7 +39,9 @@ const LoginView = ({ className = '' }) => {
 						prevIcon={<FiLock />}
 					/>
 
-					<Button label='Ingresar' />
+					<Button type='submit' className={styles.submit}>
+						Ingresar
+					</Button>
 				</form>
 
 				<hr />

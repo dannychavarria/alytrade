@@ -14,19 +14,19 @@
 	--sideBarRight: 20vw;
 
 	/* Color primary */
-	--primary-light: #;
+	--primary-light: #279ee6;
 	--primary: #186491;
-	--primary-dark: #;
+	--primary-dark: #0d354d;
 
 	/* Color secondary */
-	--secondary-light: #;
+	--secondary-light: #26e4f0;
 	--secondary: #1fb4bd;
-	--secondary-dark: #;
+	--secondary-dark: #147980;
 
 	/* Color accent */
-	--accent-light: #;
+	--accent-light: #fac64d;
 	--accent: #f9b002;
-	--accent-dark: #;
+	--accent-dark: #ad7b02;
 
 	/* Color success */
 	--success-light: #;
