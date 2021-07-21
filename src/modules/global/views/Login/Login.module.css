@@ -1,9 +1,21 @@
+.parent {
+	align-items: center;
+	background-color: var(--primary-dark);
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+	max-height: 100%;
+}
+
 /* Login view */
 .login {
+	background-color: var(--bg-light);
+	border-radius: 1rem;
 	display: grid;
-	flex-grow: 1;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 100%;
+	margin: auto 0;
+	overflow: hidden;
 }
 
 /* Left panel */
@@ -12,6 +24,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding: 0 2rem;
 }
 
 .logo {
@@ -40,15 +53,53 @@
 }
 
 .input {
-	width: 100%;
 	margin: 0.5rem;
+	width: 100%;
 }
 
 .submit {
-	min-width: 14rem;
 	margin: 1rem;
+	min-width: 14rem;
+}
+
+.hr {
+	border-color: var(--text-light-light);
+	margin: 1rem;
+	width: 100%;
+}
+
+.footer {
+	align-items: center;
+	color: var(--text-dark-light);
+	display: flex;
+	flex-direction: column;
+}
+
+.textSecondary {
+	color: var(--text-dark);
+	font-weight: 600;
+	margin: 1rem;
+}
+
+.textSecondary a {
+	color: var(--primary);
+}
+
+.poweredBy {
+	margin: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
 }
 
 /* Right panel */
 .rightPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.rightPanel .span {
+	color: var(--text-light-light);
+	font-weight: 600;
 }
