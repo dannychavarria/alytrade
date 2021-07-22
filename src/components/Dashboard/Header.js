@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../../constants/colors.json'
 import { logOut } from '../../reducers/DashboardReducer'
 import UserMenu from '../UserMenu'
-
+import CharacterCanvas from './CharacterCanvas'
 const useStyles = createUseStyles({
     container: {
         display: "flex",
@@ -62,7 +62,7 @@ const Header = () => {
 
         // return container
 
-        return <UserMenu/>
+        return <UserMenu username={username}/>
     }
 
     const clickHandler = (e) => {
@@ -89,12 +89,12 @@ const Header = () => {
         context.fillText(letra, 20, 40)
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (username) {
             buildCanvas(username.charAt(0).toUpperCase())
             
         }
-    }, [username])
+    }, [username])*/
 
     return (<div className={styles.container}>
         <div className={styles.leftSide}>
@@ -102,7 +102,8 @@ const Header = () => {
             <span><h5 style={{ margin: 0, fontWeight: "normal" }}>Bienvenido a Alytrade</h5></span>
         </div>
         <div id="rightSide" className={styles.rightSide}>
-            <canvas ref={canvas} width="60" height="60" style={{width:'60px',height:'60px'}}></canvas>
+            {/*<canvas ref={canvas} width="60" height="60" style={{width:'60px',height:'60px'}}></canvas>*/}
+            {username?<CharacterCanvas letra={username.charAt(0).toUpperCase()} width="60" height="60" style={{width:'60px',height:'60px'}} /> : ''}
             <h5 style={{margin:0,fontWeight:"normal",cursor:"pointer"}} onClick={clickHandler}>{username}</h5>
             {state?buildMenu():''}
         </div>
