@@ -9,13 +9,14 @@
 	padding: 0.5rem;
 }
 
-/* Register view */
-.register {
+/* Create investment view */
+.createInvestment {
 	background-color: var(--primary-dark);
 	border-radius: 1rem;
 	box-shadow: 0 0 3rem rgba(0, 0, 0, 0.75);
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	height: 30rem;
 	margin: auto 0;
 	overflow: hidden;
 }
@@ -27,7 +28,7 @@
 	flex-direction: column;
 	justify-content: center;
 	margin: auto;
-	max-width: 36rem;
+	max-width: 32rem;
 	padding: 0 2rem;
 }
 
@@ -62,39 +63,10 @@
 	width: 100%;
 }
 
-.conditions {
-	align-items: center;
-	color: var(--text-light);
-	display: flex;
-	flex-direction: row;
-	margin: 1rem 0;
-}
-
-.conditions input[type='checkbox'] {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	background-color: var(--transparent);
-	border-radius: 0.25rem;
-	border: 0.125rem solid var(--secondary-dark);
-	cursor: pointer;
-	margin-right: 1rem;
-	padding: 0.5rem;
-}
-
-.conditions input[type='checkbox']:checked {
-	background-color: var(--secondary);
-	box-shadow: 0 0 0.5rem var(--secondary);
-}
-
-.conditions span span {
-	color: var(--primary-light);
-	cursor: pointer;
-}
-
 .submit {
-	margin: 1rem;
+	margin-top: 4rem;
 	min-width: 14rem;
+	margin-bottom: 1rem;
 }
 
 .poweredBy {
@@ -116,11 +88,4 @@
 	margin: 1rem;
 	max-height: 10rem;
 	max-width: 10rem;
-}
-
-.leftPanel .span {
-	color: var(--text-light-light);
-	font-weight: 600;
-	margin: 1rem;
-	max-width: 19rem;
 }
