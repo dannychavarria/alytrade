@@ -14,16 +14,16 @@
 	--sideBarRight: 20vw;
 
 	/* Color primary */
-	--primary-light: #279ee6;
-	--primary: #186491;
-	--primary-dark: #0d354d;
-	--primary-gradient: #186491e0;
+	--primary-light: #085585;
+	--primary: #043551;
+	--primary-dark: #02141f;
+	--primary-gradient: #043551de;
 
 	/* Color secondary */
 	--secondary-light: #26e4f0;
 	--secondary: #1fb4bd;
 	--secondary-dark: #147980;
-	--secondary-gradient: #1fb4bde0;
+	--secondary-gradient: #1fb5bd7e;
 
 	/* Color accent */
 	--accent-light: #fac64d;
@@ -56,9 +56,9 @@
 	--bg-light-dark: #aeaeae;
 
 	/* Color background-dark */
-	--bg-dark-light: #;
-	--bg-dark: #;
-	--bg-dark-dark: #;
+	--bg-dark-light: #2e2e2e;
+	--bg-dark: #0e0e0e;
+	--bg-dark-dark: #000;
 
 	/* Color text-light */
 	--text-light-light: #fff;

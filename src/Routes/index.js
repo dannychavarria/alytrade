@@ -2,7 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import * as Containers from '../Containers'
 import { useSelector } from 'react-redux'
-import { LoginView, RegisterView } from 'modules/global/views'
+import {
+	CreateInvestmentView,
+	LoginView,
+	RegisterView,
+} from 'modules/global/views'
 
 const PrivateRoute = ({ children, isLogged, ...rest }) => {
 	return (
@@ -49,6 +53,9 @@ const Routes = () => {
 				</Route>
 				<Route path='/register'>
 					<RegisterView />
+				</Route>
+				<Route path='/create-investment'>
+					<CreateInvestmentView />
 				</Route>
 				<PrivateRoute isLogged={IsLogged()} path='/dashboard'>
 					<Containers.MainContainer />

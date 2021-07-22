@@ -4,17 +4,6 @@ import { classNames } from 'modules/customs/utils'
 import React from 'react'
 import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
-import {
-	FiCreditCard,
-	FiDollarSign,
-	FiGlobe,
-	FiLock,
-	FiMail,
-	FiPhone,
-	FiUser,
-	FiWatch,
-} from 'react-icons/fi'
-import { FaWallet, FaCoins } from 'react-icons/fa'
 
 const RegisterView = ({ className = '' }) => {
 	const { register } = useRegister()
@@ -61,55 +50,56 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Nombre'
 								className={styles.input}
-								prevIcon={<FiUser />}
 							/>
 
 							<TextField
 								placeholder='Apellido'
 								className={styles.input}
-								prevIcon={<FiUser />}
 							/>
 						</div>
 
-						<TextField
-							placeholder='Correo electrónico'
-							className={styles.input}
-							prevIcon={<FiMail />}
-							type='email'
-						/>
-
 						<div className={styles.columns}>
 							<TextField
-								placeholder='País'
+								placeholder='Correo electrónico'
 								className={styles.input}
-								prevIcon={<FiGlobe />}
-								type='select'
+								type='email'
 							/>
 
-							<TextField
-								placeholder='teléfono'
-								className={styles.input}
-								prevIcon={<FiPhone />}
-							/>
-						</div>
-
-						<TextField
-							placeholder='Hash'
-							className={styles.input}
-							prevIcon={<FiCreditCard />}
-						/>
-
-						<div className={styles.columns}>
 							<TextField
 								placeholder='Usuario'
 								className={styles.input}
-								prevIcon={<FiUser />}
+							/>
+						</div>
+
+						<div className={styles.columns}>
+							<TextField
+								placeholder='Teléfono'
+								className={styles.input}
+							/>
+
+							<TextField
+								className={styles.input}
+								type='select'
+								defaultValue=''
+								options={[
+									{
+										label: 'País',
+										value: '',
+										disabled: true,
+									},
+								]}
+							/>
+						</div>
+
+						<div className={styles.columns}>
+							<TextField
+								placeholder='Hash'
+								className={styles.input}
 							/>
 
 							<TextField
 								placeholder='Wallet'
 								className={styles.input}
-								prevIcon={<FaWallet />}
 							/>
 						</div>
 
@@ -117,43 +107,52 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Contraseña'
 								className={styles.input}
-								prevIcon={<FiLock />}
 								type='password'
 							/>
 
 							<TextField
-								placeholder='Repetir contraseña'
+								placeholder='Repita contraseña'
 								className={styles.input}
-								prevIcon={<FiLock />}
 								type='password'
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
-								placeholder='Monto'
 								className={styles.input}
-								prevIcon={<FiDollarSign />}
-							/>
-
-							<TextField
-								placeholder='Moneda'
-								className={styles.input}
-								prevIcon={<FaCoins />}
 								type='select'
+								defaultValue=''
 								options={[
+									{
+										label: 'Moneda',
+										value: '',
+										disabled: true,
+									},
 									{ label: 'Alycoin', value: 'ALY' },
 									{ label: 'Bitcoin', value: 'BTC' },
 								]}
 							/>
+
+							<TextField
+								placeholder='Monto'
+								className={styles.input}
+							/>
 						</div>
 
-						<TextField
-							placeholder='Plan'
-							className={styles.input}
-							prevIcon={<FiWatch />}
-							type='select'
-						/>
+						<div className={styles.columns}>
+							<TextField
+								className={styles.input}
+								type='select'
+								defaultValue=''
+								options={[
+									{
+										label: 'Plan',
+										value: '',
+										disabled: true,
+									},
+								]}
+							/>
+						</div>
 
 						<div className={styles.conditions}>
 							<input

@@ -13,14 +13,18 @@
 
 .input {
 	align-items: center;
-	background-color: var(--bg-light);
+	background-color: var(--primary-dark);
 	border-radius: 1rem;
-	border: 0.125rem solid var(--text-dark-light);
+	border: 0.125rem solid var(--primary);
 	display: flex;
 	flex-direction: row;
 	padding: 0.25rem;
 	position: relative;
 	width: 100%;
+}
+
+.input:focus-within {
+	border: 0.125rem solid var(--primary-light);
 }
 
 .icon {
@@ -37,14 +41,19 @@
 .input select {
 	background-color: var(--transparent);
 	border: none;
-	color: var(--text-dark);
-	flex-grow: 1;
+	color: var(--text-light);
 	font-size: 1rem;
 	padding: 0.125rem 0.25rem;
+	width: 100%;
 }
 
 .input input:focus {
 	outline: none;
+}
+
+.input select option {
+	background-color: var(--primary-dark);
+	color: var(--text-light);
 }
 
 .error {
