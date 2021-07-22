@@ -1,0 +1,54 @@
+.textField {
+	align-items: center;
+	border: none;
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	color: var(--text-dark);
+	font-size: 1rem;
+	margin: 0.125rem 0 0.25rem;
+}
+
+.input {
+	align-items: center;
+	background-color: var(--bg-light);
+	border-radius: 1rem;
+	border: 0.125rem solid var(--text-dark-light);
+	display: flex;
+	flex-direction: row;
+	padding: 0.25rem;
+	position: relative;
+	width: 100%;
+}
+
+.icon {
+	color: var(--text-dark-light);
+	font-size: 1.125rem;
+	margin: 0.125rem 0.5rem;
+}
+
+.iconPassword {
+	cursor: pointer;
+}
+
+.input input,
+.input select {
+	background-color: var(--transparent);
+	border: none;
+	color: var(--text-dark);
+	flex-grow: 1;
+	font-size: 1rem;
+	padding: 0.125rem 0.25rem;
+}
+
+.input input:focus {
+	outline: none;
+}
+
+.error {
+	color: var(--danger);
+	font-size: 0.75rem;
+	margin: 0.125rem 0 0.25rem;
+}
