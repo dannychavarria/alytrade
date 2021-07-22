@@ -1,0 +1,91 @@
+.parent {
+	align-items: center;
+	background-color: var(--primary-dark);
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+	max-height: 100%;
+	padding: 0.5rem;
+}
+
+/* Create investment view */
+.createInvestment {
+	background-color: var(--primary-dark);
+	border-radius: 1rem;
+	box-shadow: 0 0 3rem rgba(0, 0, 0, 0.75);
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 30rem;
+	margin: auto 0;
+	overflow: hidden;
+}
+
+/* Right panel */
+.rightPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	max-width: 32rem;
+	padding: 0 2rem;
+}
+
+.form {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0 1rem;
+}
+
+.title {
+	color: var(--text-light);
+	font-size: 1.5rem;
+	margin: 1rem;
+}
+
+.span {
+	color: var(--text-light);
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.input {
+	margin: 0.5rem 0;
+	width: 100%;
+}
+
+.columns {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+	width: 100%;
+}
+
+.submit {
+	margin-top: 4rem;
+	min-width: 14rem;
+	margin-bottom: 1rem;
+}
+
+.poweredBy {
+	margin-top: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
+}
+
+/* Left panel */
+.leftPanel {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 2rem;
+}
+
+.logo {
+	margin: 1rem;
+	max-height: 10rem;
+	max-width: 10rem;
+}
