@@ -51,6 +51,11 @@
 	outline: none;
 }
 
+.input select option {
+	background-color: var(--primary-dark);
+	color: var(--text-light);
+}
+
 .error {
 	color: var(--danger);
 	font-size: 0.75rem;
