@@ -1,4 +1,4 @@
-import { classNames } from 'modules/customs/utils'
+import { classNames, randomKey } from 'modules/customs/utils'
 import React from 'react'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import styles from './TextField.module.css'
@@ -18,7 +18,7 @@ import { useTextField } from './useTextField.hook'
  */
 const TextField = ({
 	className = '',
-	id = '',
+	id = randomKey(),
 	label = '',
 	type = 'text',
 	options = [],
