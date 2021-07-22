@@ -1,0 +1,105 @@
+.button {
+	background-color: var(--bg-light-dark);
+	border-radius: 2rem;
+	border: none;
+	color: var(--text-dark-dark);
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	padding: 0.5rem 1.5rem;
+	text-transform: uppercase;
+}
+
+/* Primary fillled */
+.primary.filled {
+	background-color: var(--primary);
+	color: var(--text-light);
+}
+
+.primary.filled:hover {
+	background-color: var(--primary-light);
+	color: var(--text-light-light);
+}
+
+.primary.filled:active {
+	background-color: var(--primary-dark);
+	color: var(--text-light-dark);
+}
+
+/* Primary outlined */
+.primary.outlined {
+	background-color: var(--transparent);
+	border: 0.125rem solid var(--primary);
+	color: var(--primary);
+}
+
+.primary.outlined:hover {
+	border: 0.125rem solid var(--primary-light);
+	color: var(--primary-light);
+}
+
+.primary.outlined:active {
+	border: 0.125rem solid var(--primary-dark);
+	color: var(--primary-dark);
+}
+
+/* Primary text */
+.primary.text {
+	background-color: var(--transparent);
+	color: var(--primary);
+}
+
+.primary.text:hover {
+	color: var(--primary-light);
+}
+
+.primary.text:active {
+	color: var(--primary-dark);
+}
+
+/* Secondary fillled */
+.secondary.filled {
+	background-color: var(--secondary);
+	color: var(--text-light);
+}
+
+.secondary.filled:hover {
+	background-color: var(--secondary-light);
+	color: var(--text-light-light);
+}
+
+.secondary.filled:active {
+	background-color: var(--secondary-dark);
+	color: var(--text-light-dark);
+}
+
+/* secondary outlined */
+.secondary.outlined {
+	background-color: var(--transparent);
+	border: 0.125rem solid var(--secondary);
+	color: var(--secondary);
+}
+
+.secondary.outlined:hover {
+	border: 0.125rem solid var(--secondary-light);
+	color: var(--secondary-light);
+}
+
+.secondary.outlined:active {
+	border: 0.125rem solid var(--secondary-dark);
+	color: var(--secondary-dark);
+}
+
+/* secondary text */
+.secondary.text {
+	background-color: var(--transparent);
+	color: var(--secondary);
+}
+
+.secondary.text:hover {
+	color: var(--secondary-light);
+}
+
+.secondary.text:active {
+	color: var(--secondary-dark);
+}
