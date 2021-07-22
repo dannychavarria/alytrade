@@ -4,17 +4,6 @@ import { classNames } from 'modules/customs/utils'
 import React from 'react'
 import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
-import {
-	FiCreditCard,
-	FiDollarSign,
-	FiGlobe,
-	FiLock,
-	FiMail,
-	FiPhone,
-	FiUser,
-	FiWatch,
-} from 'react-icons/fi'
-import { FaWallet, FaCoins } from 'react-icons/fa'
 
 const RegisterView = ({ className = '' }) => {
 	const { register } = useRegister()
