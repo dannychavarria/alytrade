@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import * as Containers from '../Containers'
 import { useSelector } from 'react-redux'
@@ -35,7 +35,7 @@ const Routes = () => {
 	}
 
 	return (
-		<>
+		<main style={{height:"100%"}}>
 			<Router>
 				<Route
 					exact
@@ -61,7 +61,7 @@ const Routes = () => {
 					<Containers.MainContainer />
 				</PrivateRoute>
 			</Router>
-		</>
+		</main>
 	)
 }
 

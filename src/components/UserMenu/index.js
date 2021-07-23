@@ -5,6 +5,9 @@ import whatsapp from '../../assets/img/whatsapp.svg'
 import cerrar from '../../assets/img/cerrar.svg'
 import { FiSettings } from 'react-icons/fi';
 import CharacterCanvas from '../Dashboard/CharacterCanvas'
+import { useDispatch } from 'react-redux'
+import { logOut } from 'reducers/DashboardReducer'
+import { useHistory } from 'react-router-dom'
 const useStyle = createUseStyles({
     triangleUp: {
         width: 0,
@@ -23,6 +26,7 @@ const useStyle = createUseStyles({
         flexDirection: 'column',
         background: "transparent",
         position: 'absolute',
+        zIndex:999
     },
     band: {
         borderTopLeftRadius: "10px",
@@ -39,7 +43,7 @@ const useStyle = createUseStyles({
         '& strong':{
             margin: "5px",
             color:'white',
-            '&[title="button"]':{
+            '&[type="button"]':{
                 borderRadius: "10px",
                 padding: "5px",
                 fontSize: "12px",
@@ -77,6 +81,11 @@ const useStyle = createUseStyles({
 
 const UserMenu = ({username}) => {
     const style = useStyle()
+    const dispatcher = useDispatch()
+    const history = useHistory()
+    const logoutEvent = ()=> {
+        dispatcher(logOut())
+    }
     return (<div className={style.menuContainer}>
         <div style={{ display: 'flex', width: "100%",justifyContent: "flex-end" }}>
             <div className={style.triangleUp} />
@@ -84,7 +93,7 @@ const UserMenu = ({username}) => {
         <div className={style.band}>
             <div className={style.bandLeft}>
                 <strong>{username}</strong>
-                <strong title="button">+ Nueva Inversion</strong>
+                <strong onClick={()=> history.push('/create-investment')} type="button">+ Nueva Inversion</strong>
 
             </div>
             <div className={style.bandRight}>
@@ -93,8 +102,8 @@ const UserMenu = ({username}) => {
         </div>
         <div className={style.optionsMenu}>
             <p><FiSettings size={25}/><strong>Configuración</strong></p>
-            <p><img height="25" width="25" src={whatsapp}></img><strong>Soporte</strong></p>
-            <p><img height="25" width="25" src={cerrar}></img> <strong>Cerrar sesión</strong></p>
+            <p onClick={()=> window.location.href='https://wa.me/+50660727720'}><img height="25" width="25" src={whatsapp}></img><strong>Soporte</strong></p>
+            <p onClick={logoutEvent}><img height="25" width="25" src={cerrar}></img> <strong>Cerrar sesión</strong></p>
         </div>
     </div>)
 }

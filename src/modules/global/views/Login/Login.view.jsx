@@ -1,17 +1,25 @@
 import { alyTradeLogo, alyTradeOrbe, background, poweredBy } from 'assets'
 import { Button, TextField } from 'modules/customs/components'
 import { classNames } from 'modules/customs/utils'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Login.module.css'
 import { useLogin } from './useLogin.hook'
 import { FiLock, FiMail } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 const LoginView = ({ className = '' }) => {
-	const { login } = useLogin()
+	const { login, loginState, gotoRegister } = useLogin()
+
+	const [state, setState] = useState({email:'',password:''})
+	const onChangeEvent = (e) => {
+		setState({
+			...state,
+			[e.target.name]: e.target.value
+		})
+	}
 
 	return (
-		<main className={classNames(styles.parent, className)}>
+		<div className={classNames(styles.parent, className)}>
 			<div className={styles.login}>
 				<div className={styles.leftPanel}>
 					<img
@@ -20,25 +28,29 @@ const LoginView = ({ className = '' }) => {
 						className={styles.logo}
 					/>
 
-					<form onSubmit={login} className={styles.form}>
+					<form onSubmit={(e)=>login(e,state)} className={styles.form}>
 						<h2 className={styles.title}>Bienvenido</h2>
 
 						<span className={styles.span}>
 							Por favor ingrese su nombre de usuario y su
 							contraseña para acceder al sistema.
 						</span>
-
+						<h5 style={{color:'red'}}>{loginState}</h5>
 						<TextField
+							name="email"
 							placeholder='Correo electrónico'
 							className={styles.input}
 							prevIcon={<FiMail />}
+							onChange={onChangeEvent}
 						/>
 
 						<TextField
+							name="password"
 							placeholder='Contraseña'
 							className={styles.input}
 							type='password'
 							prevIcon={<FiLock />}
+							onChange={onChangeEvent}
 						/>
 
 						<Button type='submit' className={styles.submit}>
@@ -75,9 +87,9 @@ const LoginView = ({ className = '' }) => {
 						continuación
 					</span>
 
-					<Button type='button' rol='secondary' className={styles.submit}>
-							Crear cuenta
-						</Button>
+					<Button onClick={gotoRegister} type='button' rol='secondary' className={styles.submit}>
+						Crear cuenta
+					</Button>
 				</div>
 			</div>
 
@@ -86,7 +98,7 @@ const LoginView = ({ className = '' }) => {
 				alt='Powered by AlySystem'
 				className={styles.poweredBy}
 			/>
-		</main>
+		</div>
 	)
 }
 

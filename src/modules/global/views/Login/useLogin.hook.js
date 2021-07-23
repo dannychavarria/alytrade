@@ -1,9 +1,25 @@
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { Login } from "reducers/DashboardReducer"
+
 const useLogin = () => {
-	const login = e => {
+
+	const history = useHistory()
+	const dispatcher = useDispatch()
+	const loginState = useSelector(state => state.loginState)
+	const login = (e, formData) => {
 		e.preventDefault()
+
+		dispatcher(Login(formData.email, formData.password, () => {
+			history.push('/dashboard')
+		}))
 	}
 
-	return { login }
+	const gotoRegister = () => {
+		history.push('/register')
+	}
+
+	return { login, loginState, gotoRegister }
 }
 
 export { useLogin }

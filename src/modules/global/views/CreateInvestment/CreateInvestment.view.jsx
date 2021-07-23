@@ -6,10 +6,10 @@ import styles from './CreateInvestment.module.css'
 import { useCreateInvestment } from './useCreateInvestment.hook'
 
 const CreateInvestmentView = ({ className = '' }) => {
-	const { createInvestment } = useCreateInvestment()
+	const { createInvestment, onChangeEvent, requestStatus } = useCreateInvestment()
 
 	return (
-		<main className={classNames(styles.parent, className)}>
+		<div className={classNames(styles.parent, className)}>
 			<div className={styles.createInvestment}>
 				<div
 					className={styles.leftPanel}
@@ -33,53 +33,62 @@ const CreateInvestmentView = ({ className = '' }) => {
 							Por favor ingrese sus datos para poder crear su
 							inversión.
 						</span>
-
+						<h5 style={{ color: 'red' }}>{requestStatus}</h5>
 						<div className={styles.columns}>
 							<TextField
+								name="hash"
 								placeholder='Hash'
 								className={styles.input}
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
+								name="wallet"
 								placeholder='Wallet'
 								className={styles.input}
+								onChange={onChangeEvent}
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
+								name="id_currency"
 								className={styles.input}
 								type='select'
-								defaultValue=''
+								defaultValue={1}
 								options={[
-									{
-										label: 'Moneda',
-										value: '',
-										disabled: true,
-									},
-									{ label: 'Alycoin', value: 'ALY' },
-									{ label: 'Bitcoin', value: 'BTC' },
+									{ label: 'Bitcoin', value: 1 },
+									{ label: 'Ethereum', value: 2 },
+									{ label: 'Litecoin', value: 3 },
+									{ label: 'Dash', value: 4 },
+									{ label: 'Tether', value: 5 },
+									{ label: 'DogeCoin', value: 6 },
+									{ label: 'Ripple', value: 8 },
+									{ label: 'Binance', value: 9 },
 								]}
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
+								name="amount"
 								placeholder='Monto'
 								className={styles.input}
+								onChange={onChangeEvent}
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
+								name="alytradeMonths"
 								className={styles.input}
 								type='select'
-								defaultValue=''
+								defaultValue={3}
 								options={[
-									{
-										label: 'Plan',
-										value: '',
-										disabled: true,
-									},
+									{ label: '3 Meses', value: 3 },
+									{ label: '6 Meses', value: 6 },
+									{ label: '12 Meses', value: 12 },
 								]}
+								onChange={onChangeEvent}
 							/>
 						</div>
 
@@ -95,7 +104,7 @@ const CreateInvestmentView = ({ className = '' }) => {
 				alt='Powered by AlySystem'
 				className={styles.poweredBy}
 			/>
-		</main>
+		</div>
 	)
 }
 

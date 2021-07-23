@@ -9,7 +9,7 @@ const RegisterView = ({ className = '' }) => {
 	const { register } = useRegister()
 
 	return (
-		<main className={classNames(styles.parent, className)}>
+		<div className={classNames(styles.parent, className)}>
 			<div className={styles.register}>
 				<div
 					className={styles.leftPanel}
@@ -50,11 +50,13 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Nombre'
 								className={styles.input}
+								name='firstname'
 							/>
 
 							<TextField
 								placeholder='Apellido'
 								className={styles.input}
+								name='lastname'
 							/>
 						</div>
 
@@ -63,11 +65,13 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Correo electrónico'
 								className={styles.input}
 								type='email'
+								name='email'
 							/>
 
 							<TextField
 								placeholder='Usuario'
 								className={styles.input}
+								name='username'
 							/>
 						</div>
 
@@ -75,9 +79,11 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Teléfono'
 								className={styles.input}
+								name='phone'
 							/>
 
 							<TextField
+								name='country'
 								className={styles.input}
 								type='select'
 								defaultValue=''
@@ -95,11 +101,13 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Hash'
 								className={styles.input}
+								name='hash'
 							/>
 
 							<TextField
 								placeholder='Wallet'
 								className={styles.input}
+								name='wallet'
 							/>
 						</div>
 
@@ -108,17 +116,20 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Contraseña'
 								className={styles.input}
 								type='password'
+								name='password1'
 							/>
 
 							<TextField
 								placeholder='Repita contraseña'
 								className={styles.input}
 								type='password'
+								name='password2'
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
+							name='id_currency'
 								className={styles.input}
 								type='select'
 								defaultValue=''
@@ -136,11 +147,13 @@ const RegisterView = ({ className = '' }) => {
 							<TextField
 								placeholder='Monto'
 								className={styles.input}
+								name='amount'
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
+								name='alytradeMonths'
 								className={styles.input}
 								type='select'
 								defaultValue=''
@@ -179,7 +192,8 @@ const RegisterView = ({ className = '' }) => {
 				alt='Powered by AlySystem'
 				className={styles.poweredBy}
 			/>
-		</main>
+
+		</div>
 	)
 }
 

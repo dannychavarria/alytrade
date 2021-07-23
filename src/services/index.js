@@ -59,6 +59,24 @@ class alyTradeApi {
             throw err
         })
     }
+    createNewInvestment = (token, data) => {
+        return axios({
+            method: 'post',
+            url: `${this.host}/alytrade/newAlytradeInvestment`,
+            headers: {
+                'x-auth-token': token
+            },
+            data
+        }).then(response => {
+            const { data } = response
+            if(data.error)
+                throw new Error(data.message)
+            return data
+        }).catch(err => {
+            console.log(err)
+            throw err
+        })
+    }
 }
 
 export default new alyTradeApi(process.env.REACT_APP_HOST)
