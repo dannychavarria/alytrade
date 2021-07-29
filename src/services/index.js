@@ -77,6 +77,23 @@ class alyTradeApi {
             throw err
         })
     }
+    registerNewUser = (data)=> {
+        return axios({
+            method: 'POST',
+            url: `${this.host}/alytrade/register`,
+            data
+        }).then(response=>{
+            const { data } =response
+            if(data.error)
+                throw new Error(data.message)
+
+            console.log(data)
+            return data
+        }).catch(err=>{
+            console.log(err)
+            throw new Error(err.message)
+        })
+    }
 }
 
 export default new alyTradeApi(process.env.REACT_APP_HOST)

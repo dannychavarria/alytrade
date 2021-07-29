@@ -6,7 +6,7 @@ import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
 
 const RegisterView = ({ className = '' }) => {
-	const { register } = useRegister()
+	const { register, onChangeEvent,countries,formStatus } = useRegister()
 
 	return (
 		<div className={classNames(styles.parent, className)}>
@@ -51,12 +51,14 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Nombre'
 								className={styles.input}
 								name='firstname'
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
 								placeholder='Apellido'
 								className={styles.input}
 								name='lastname'
+								onChange={onChangeEvent}
 							/>
 						</div>
 
@@ -66,12 +68,14 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								type='email'
 								name='email'
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
 								placeholder='Usuario'
 								className={styles.input}
 								name='username'
+								onChange={onChangeEvent}
 							/>
 						</div>
 
@@ -80,6 +84,7 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Teléfono'
 								className={styles.input}
 								name='phone'
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
@@ -87,13 +92,13 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								type='select'
 								defaultValue=''
-								options={[
-									{
-										label: 'País',
-										value: '',
-										disabled: true,
-									},
-								]}
+								onChange={onChangeEvent}
+								options={countries.map(item=>{
+									return {
+										label:item,
+										value:item,
+									}
+								})}
 							/>
 						</div>
 
@@ -102,12 +107,14 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Hash'
 								className={styles.input}
 								name='hash'
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
 								placeholder='Wallet'
 								className={styles.input}
 								name='wallet'
+								onChange={onChangeEvent}
 							/>
 						</div>
 
@@ -117,6 +124,7 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								type='password'
 								name='password1'
+								onChange={onChangeEvent}
 							/>
 
 							<TextField
@@ -124,23 +132,26 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								type='password'
 								name='password2'
+								onChange={onChangeEvent}
 							/>
 						</div>
 
 						<div className={styles.columns}>
 							<TextField
-							name='id_currency'
+								name='id_currency'
 								className={styles.input}
 								type='select'
 								defaultValue=''
+								onChange={onChangeEvent}
 								options={[
-									{
-										label: 'Moneda',
-										value: '',
-										disabled: true,
-									},
-									{ label: 'Alycoin', value: 'ALY' },
-									{ label: 'Bitcoin', value: 'BTC' },
+									{ label: 'Bitcoin', value: 1 },
+									{ label: 'Ethereum', value: 2 },
+									{ label: 'Litecoin', value: 3 },
+									{ label: 'Dash', value: 4 },
+									{ label: 'Tether', value: 5 },
+									{ label: 'DogeCoin', value: 6 },
+									{ label: 'Ripple', value: 8 },
+									{ label: 'Binance', value: 9 },
 								]}
 							/>
 
@@ -148,6 +159,7 @@ const RegisterView = ({ className = '' }) => {
 								placeholder='Monto'
 								className={styles.input}
 								name='amount'
+								onChange={onChangeEvent}
 							/>
 						</div>
 
@@ -157,17 +169,16 @@ const RegisterView = ({ className = '' }) => {
 								className={styles.input}
 								type='select'
 								defaultValue=''
+								onChange={onChangeEvent}
 								options={[
-									{
-										label: 'Plan',
-										value: '',
-										disabled: true,
-									},
+									{ label: '3 Meses', value: 3 },
+									{ label: '6 Meses', value: 6 },
+									{ label: '12 Meses', value: 12 },
 								]}
 							/>
 						</div>
 
-						<div className={styles.conditions}>
+						{/* <div className={styles.conditions}>
 							<input
 								type='checkbox'
 								name='conditions'
@@ -178,8 +189,8 @@ const RegisterView = ({ className = '' }) => {
 								He leído y estoy de acuerdo con los{' '}
 								<span>términos y condiciones</span>
 							</span>
-						</div>
-
+						</div> */}
+						<h5 style={{color:'red'}}>{formStatus}</h5>
 						<Button type='submit' className={styles.submit}>
 							Crear cuenta
 						</Button>
