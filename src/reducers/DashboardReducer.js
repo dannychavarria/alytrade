@@ -11,7 +11,7 @@ const ACTIONS = {
     DASHBOARD_SET_SELECTED_PLAN: 'DASHBOARD_SET_SELECTED_PLAN',
     DASHBOARD_LOGOUT: 'DASHBOARD_LOGOUT',
     DASHBOARD_LOGIN_STATUS: 'DASHBOARD_LOGIN_STATUS',
-    DASHBOARD_NEW_INVESTMENT_STATUS: 'DASHBOARD_NEW_INVESTMENT_STATUS'
+    DASHBOARD_NEW_INVESTMENT_STATUS: 'DASHBOARD_NEW_INVESTMENT_STATUS',
 }
 
 const initialState = {
@@ -75,11 +75,15 @@ export const DashboardReducer = (state = initialState, action) => {
 export const Login = (email, password, callback) => {
 
     return dispatch => {
-        console.log("entro al dispatch2")
         return Services.login(email, password).then(response => {
-            const { id_information, id_user, token, username } = response
+            const { id_information, id_user, token, username,firstname,
+                lastname,
+                email,
+                phone,
+                country } = response
+            
             sessionStorage.setItem('token', token)
-            dispatch({ type: ACTIONS.DASHBOARD_SET_USERINFO, payload: { id_information, id_user, token, username } })
+            dispatch({ type: ACTIONS.DASHBOARD_SET_USERINFO, payload: { id_information, id_user, token, username,firstname, lastname, email, phone, country } })
             callback?.()
         }).catch(err => {
             console.log(err.message)
@@ -177,4 +181,8 @@ export const logOut = () => {
 
 export const clearNewInvestmenStatus = () => {
     return { type: ACTIONS.DASHBOARD_NEW_INVESTMENT_STATUS, payload: undefined }
+}
+
+export const changeUserInfo = (data) => {
+    return { type:ACTIONS.DASHBOARD_SET_USERINFO, payload:data }
 }

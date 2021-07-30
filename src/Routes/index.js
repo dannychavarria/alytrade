@@ -35,7 +35,7 @@ const Routes = () => {
 	}
 
 	return (
-		<main style={{height:"100%"}}>
+		<main id="main" style={{height:"100%"}}>
 			<Router>
 				<Route
 					exact

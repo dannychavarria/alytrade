@@ -21,8 +21,16 @@ class alyTradeApi {
             if (data.error)
                 throw new Error(data.message)
 
-            const { id_user, username, id_information, token } = data
-            return { id_user, username, id_information, token }
+            const { id_user, username, id_information, token, firstname, lastname,
+                email,
+                phone,
+                country } = data
+            return {
+                id_user, username, id_information, token, firstname, lastname,
+                email,
+                phone,
+                country
+            }
         }).catch(err => {
             console.log(err)
             throw err
@@ -69,7 +77,7 @@ class alyTradeApi {
             data
         }).then(response => {
             const { data } = response
-            if(data.error)
+            if (data.error)
                 throw new Error(data.message)
             return data
         }).catch(err => {
@@ -77,21 +85,37 @@ class alyTradeApi {
             throw err
         })
     }
-    registerNewUser = (data)=> {
+    registerNewUser = (data) => {
         return axios({
             method: 'POST',
             url: `${this.host}/alytrade/register`,
             data
-        }).then(response=>{
-            const { data } =response
-            if(data.error)
+        }).then(response => {
+            const { data } = response
+            if (data.error)
                 throw new Error(data.message)
 
             console.log(data)
             return data
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
-            throw new Error(err.message)
+            throw new Error(err.response.error)
+        })
+    }
+    updateUserData = (token, data) => {
+        return axios({
+            method:'POST',
+            url:`${this.host}/alytrade/user/data`,
+            data,
+            headers: {
+                'x-auth-token': token
+            }
+        }).then(response =>{
+            return response
+        }).catch(err => {
+            const {response} = err
+            console.dir(response)
+            throw new Error(response.data.error)
         })
     }
 }
