@@ -29,12 +29,11 @@ const useRegister = () => {
 	
 
 	const buildRequest = () => {
-
 		if (state.password1 !== state.password2) {
 			setFormStatus('Contraseñas no coinciden')
 			return
 		}
-		if (state.password1.lenght < 6) {
+		if (state.password1.length < 6) {
 			setFormStatus('La Contraseña debe ser mayor de 6 digitos')
 			return
 		}

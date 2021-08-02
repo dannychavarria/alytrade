@@ -74,6 +74,10 @@ export const DashboardReducer = (state = initialState, action) => {
 
 export const Login = (email, password, callback) => {
 
+    if(!email || !password ){
+        return { type: ACTIONS.DASHBOARD_LOGIN_STATUS, payload: 'Verifique su email y su contraseña' }
+    }
+
     return dispatch => {
         return Services.login(email, password).then(response => {
             const { id_information, id_user, token, username,firstname,
