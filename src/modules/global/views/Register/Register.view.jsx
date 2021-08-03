@@ -6,7 +6,7 @@ import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
 
 const RegisterView = ({ className = '' }) => {
-	const { register, onChangeEvent,countries,formStatus } = useRegister()
+	const { register, onChangeEvent,countries,formStatus,visibleInput } = useRegister()
 
 	return (
 		<div className={classNames(styles.parent, className)}>
@@ -174,8 +174,15 @@ const RegisterView = ({ className = '' }) => {
 									{ label: '3 Meses', value: 3 },
 									{ label: '6 Meses', value: 6 },
 									{ label: '12 Meses', value: 12 },
+									{ label: 'Mas de 12 meses', value: -1 },
 								]}
 							/>
+							{visibleInput? <TextField
+								placeholder='Meses'
+								className={styles.input}
+								name='months'
+								onChange={onChangeEvent}
+							/> :''}
 						</div>
 
 						{/* <div className={styles.conditions}>

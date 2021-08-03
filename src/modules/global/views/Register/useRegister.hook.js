@@ -2,56 +2,100 @@ import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import services from "services"
 import { useCountry } from '../../../../services/Country'
-const initialState={
-	id_currency:1,
-	alytradeMonths:3
+import Joi from 'joi'
+
+const initialState = {
+	id_currency: 1,
+	alytradeMonths: 3
 }
+
+const schema = Joi.object({
+	id_currency: Joi.number(),
+	alytradeMonths: Joi.number().equal(3, 6, 12, -1).messages({ 'number.only': 'Debe elegir un plan de 3, 6 o 12 meses' }),
+	firstname: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un nombre', 'any.required': 'Debe ingresar un nombre'  }),
+	lastname: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un apellido','any.required': 'Debe ingresar un apellido' }),
+	email: Joi.string().required().email({ tlds: false }).messages({'any.required': 'Debe ingresar un correo electrónico'}),
+	username: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un nombre de usuario','any.required': 'Debe ingresar un usuario' }),
+	phone: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un numero de telefono','any.required': 'Debe ingresar un numero de telefono' }),
+	country: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un pais','any.required': 'Debe ingresar un pais' }),
+	hash: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un hash  de transacción','any.required': 'Debe ingresar un hash de transacción' }),
+	wallet: Joi.string().required().messages({ 'string.empty': 'Debe ingresar un wallet de alypay','any.required': 'Debe ingresar un wallet de alypay' }),
+	password1: Joi.string().min(6).label('Password').messages({
+		'string.min': 'Contraseña debe ser mayor a 6 digitos'
+	}),
+	password2: Joi.any().equal(Joi.ref('password1')).required().label('Contraseña de confirmación').messages({
+		'any.only': '{{#label}} No coincide',
+		'any.required':'Debe ingresar contraseña'
+	}),
+	amount: Joi.number().required().prefs({ convert: true }).messages({'any.required': 'Debe ingresar el monto de la transacción'}),
+	months: Joi.number().min(13).prefs({ convert: true }).optional().messages({ 'number.min': 'Debe ingresar mas de 12 meses' })
+})
+
 const useRegister = () => {
 	const [state, setState] = useState(initialState)
 	const [formStatus, setFormStatus] = useState()
-	const [countries,setCountries] = useState([])
+	const [countries, setCountries] = useState([])
 	const history = useHistory()
 	const country = useCountry()
+	const [visibleInput, setVisibleInput] = useState(false)
 
 	useEffect(() => {
-		if(countries.length === 0)
-			country.getAllNames().then(data=> setCountries(data))
+		if (countries.length === 0)
+			country.getAllNames().then(data => setCountries(data))
 	}, [])
 
 
 	const onChangeEvent = (e) => {
+
+		if (e.target.name === 'alytradeMonths') {
+			if (Number(e.target.value) === -1)
+				setVisibleInput(true)
+			else {
+				setVisibleInput(false)
+				delete state.months
+			}
+		}
+
 		setState({
 			...state,
 			[e.target.name]: e.target.value
 		})
 		setFormStatus('')
 	}
-	
+
 
 	const buildRequest = () => {
-		if (state.password1 !== state.password2) {
+
+		const { value, error } = schema.validate(state)
+		if (error) {
+			console.dir(error.details)
+			setFormStatus(error.details[0].message)
+			return
+		}
+		//console.log(value?.error?.details)
+		/*if (state.password1 !== state.password2) {
 			setFormStatus('Contraseñas no coinciden')
 			return
 		}
 		if (state.password1.length < 6) {
 			setFormStatus('La Contraseña debe ser mayor de 6 digitos')
 			return
-		}
+		}*/
 
 		const request = {
-			"firstname": state.firstname,
-			"lastname": state.lastname,
-			"email": state.email,
-			"phone": state.phone,
-			"country": state.country,
-			"hash": state.hash,
-			"username": state.username,
-			"password": state.password1,
-			"wallet": state.wallet,
-			"amount": state.amount,
-			"id_currency": state.id_currency,
-			//"info":state.info,
-			"alytradeMonths": state.alytradeMonths,
+			"firstname": value.firstname,
+			"lastname": value.lastname,
+			"email": value.email,
+			"phone": value.phone,
+			"country": value.country,
+			"hash": value.hash,
+			"username": value.username,
+			"password": value.password1,
+			"wallet": value.wallet,
+			"amount": value.amount,
+			"id_currency": value.id_currency,
+			//"info":value.info,
+			"alytradeMonths": value.alytradeMonths === -1 ? value.months : value.alytradeMonths,
 		}
 		return request
 	}
@@ -62,13 +106,13 @@ const useRegister = () => {
 		if (!request) {
 			return
 		}
-
-		services.registerNewUser(request).then(response => {
+		console.log(request)
+		/*services.registerNewUser(request).then(response => {
 			history.push("/login")
 		}).catch(err => {
 			console.log(err)
 			setFormStatus(err.message)
-		})
+		})*/
 	}
 
 	const register = e => {
@@ -76,7 +120,7 @@ const useRegister = () => {
 		registerEvent()
 	}
 
-	return { register, onChangeEvent, countries,formStatus	 }
+	return { register, onChangeEvent, countries, formStatus, visibleInput }
 }
 
 export { useRegister }
