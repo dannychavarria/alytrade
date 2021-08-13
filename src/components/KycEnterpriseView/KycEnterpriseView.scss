@@ -1,0 +1,104 @@
+@import '../../utils/constants.scss';
+
+.kyc__enterprise--view {
+  padding-bottom: 64px;
+  display: grid;
+  grid-gap: 16px;
+  width: 100%;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+
+  @media (min-width: 780px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.two__rows--enterprise {
+  width: 100%;
+  display: grid;
+  grid-row-gap: 16px;
+  grid-template-rows: min-content min-content;
+
+  @media (min-width: 780px) {
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.auto__columns--enterprise {
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 300px) {
+    grid-gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+/**Estilos para la tabla de beneficiarios**/
+
+$mobile: 380px;
+
+.table__beneficiaries {
+  margin-top: 16px;
+  padding-bottom: 64px;
+}
+
+.table__head--beneficiaries {
+  padding-top: 8px;
+}
+
+.table__body--beneficiaries {
+  padding-bottom: 8px;
+}
+
+.row--beneficiaries {
+  padding: 8px;
+  text-align: left;
+  display: grid;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 3fr 2fr 1fr;
+  grid-gap: 5px;
+
+  & span:first-of-type {
+    justify-self: start;
+  }
+
+  & span:last-of-type {
+    justify-self: end;
+  }
+}
+
+.divisor--beneficiaries {
+  height: 1px;
+  width: 100%;
+  background-color: #4f4f4f;
+}
+
+.table__label--beneficiaries {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: #f2f2f2;
+
+  @media (min-width: $mobile) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+.table__value--beneficiaries {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #bdbdbd;
+
+  @media (min-width: $mobile) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}

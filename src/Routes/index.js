@@ -48,6 +48,9 @@ const Routes = () => {
 						)
 					}}
 				/>
+				<Route path='/kyc'>
+					<Containers.Kyc />
+				</Route>
 				<Route path='/login'>
 					<LoginView />
 				</Route>

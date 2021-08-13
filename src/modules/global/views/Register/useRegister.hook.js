@@ -120,7 +120,7 @@ const useRegister = () => {
 		registerEvent()
 	}
 
-	return { register, onChangeEvent, countries, formStatus, visibleInput }
+	return { register, onChangeEvent, countries, formStatus, visibleInput, state }
 }
 
 export { useRegister }

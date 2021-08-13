@@ -1,0 +1,54 @@
+.CardBeneficiaryCommerce {
+  margin: 32px 0;
+}
+
+.beneficiary__card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  overflow: auto;
+}
+
+.beneficiary__auto-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 16px;
+
+  @media (min-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 780px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.beneficiary__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.beneficiary__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 2px;
+
+  color: rgba(255, 255, 255, 0.57);
+}
+
+.beneficiary__value {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #ffffff;
+  &.name {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+}

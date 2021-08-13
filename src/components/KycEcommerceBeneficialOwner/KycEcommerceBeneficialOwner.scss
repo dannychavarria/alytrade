@@ -1,0 +1,146 @@
+@import '../../utils/constants.scss';
+
+.KycEcommerceBeneficialOwner {
+  .inputs__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0 16px;
+    justify-content: center;
+    width: 100%;
+
+    .form__column {
+      width: 100%;
+    }
+  }
+
+  box-shadow: $animationShadow;
+  border-radius: 7px;
+  padding: 1rem;
+  padding-bottom: 0;
+  margin-bottom: 2rem;
+
+  .form__group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    span {
+      margin-bottom: 5px;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    padding-bottom: 22px;
+
+    .uploads-container {
+      padding: 8px;
+      min-width: 250px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 200px);
+      gap: 16px;
+      width: 100%;
+      justify-content: center;
+
+      .photo__item {
+        text-align: center;
+        gap: 8px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .image__container {
+        position: relative;
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        img {
+          border-radius: 8px;
+          width: inherit;
+          height: inherit;
+        }
+
+        .remove__image--button {
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          padding: 8px;
+          background-color: rgba($color: red, $alpha: 0.7);
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .close__icon {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+
+    .upload-section {
+      border: 2px dashed $colorSecondary;
+      background: rgba($color: $colorSecondary, $alpha: 0.1);
+      border-radius: 8px;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content 1fr;
+      grid-row-gap: 16px;
+      justify-items: center;
+      .input__hide {
+        display: none;
+      }
+
+      .upload {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        color: rgba($color: #fff, $alpha: 0.57);
+
+        //color: $colorYellow;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 16px;
+        cursor: pointer;
+        .icon__upload {
+          width: 64px;
+          height: 54px;
+        }
+      }
+    }
+
+    .add-button {
+      width: 100%;
+      line-height: 1;
+      svg {
+        height: 1.1rem;
+        margin-left: 0.5rem;
+        fill: currentColor;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+  .toshow {
+    animation: toshow 0.5s linear;
+    transform-origin: left center;
+
+    @keyframes toshow {
+      from {
+        //transform: scale(0);
+        opacity: 0;
+      }
+    }
+  }
+}

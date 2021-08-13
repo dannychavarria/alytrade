@@ -1,0 +1,437 @@
+@import '../../utils/constants.scss';
+
+.Kyc {
+  padding: 16px;
+  overflow-x: auto;
+  background-color: #1d1d1d;
+  height: 100%;
+
+  input,
+button,
+select,
+textarea,
+a {
+    outline: none;
+
+    &.text-input {
+        //width: 100%;
+
+        background-color: #1d1d1d;
+        border: 2px solid #000;
+        border-radius: 3px;
+        color: #fff;
+        padding: 8px;
+        transition: $transition;
+
+        &:focus {
+            box-shadow: $animationShadow;
+        }
+
+        &:disabled {
+            opacity: 0.7;
+        }
+    }
+
+    &.button {
+        align-items: center;
+        background-color: #9ed3da;
+        border: none;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        cursor: pointer;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        padding: 8px 15px;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+        transition: $transition;
+
+        &:disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
+
+        &.no-border {
+            border-radius: 5px;
+        }
+
+        &.secondary {
+            background-color: $colorYellow;
+        }
+
+        &.skyblue {
+            background-color: $colorSecondary;
+        }
+
+        &.yellow {
+            background-color: $colorYellow;
+        }
+
+        &.green {
+            background-color: $greenColor;
+        }
+        &.red {
+            background-color: rgba($color: $colorRed, $alpha: 0.57);
+        }
+
+        &.large {
+            font-size: 24px;
+        }
+
+        &:hover {
+            box-shadow: $animationShadow;
+        }
+
+        &:active {
+            opacity: 0.5;
+        }
+    }
+
+    &.link {
+        cursor: pointer;
+        color: $colorSecondary;
+        text-decoration: none;
+        transition: $transition;
+
+        &:hover {
+            text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
+        }
+    }
+
+    &.picker {
+        background-color: #1d1d1d;
+        border: 2px solid #000;
+        border-radius: 3px;
+        color: #fff;
+        padding: 8px;
+        transition: $transition;
+
+        &:focus {
+            box-shadow: $animationShadow;
+        }
+    }
+
+    &[type='radio'].check {
+        position: relative;
+
+        &::after {
+            content: '';
+            background-color: #000;
+            border: 1px solid $colorYellow;
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            transition: $transition;
+        }
+
+        &:checked::after {
+            background-color: $colorYellow;
+            border-color: #000;
+        }
+
+        &:checked ~ label {
+            color: $colorYellow;
+        }
+    }
+}
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    margin: 0 auto;
+
+    min-height: 300px;
+    max-width: 750px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: rgba(#000, 0.4);
+
+    .indicator {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 1.5rem;
+      height: 5rem;
+
+      path {
+        fill: $colorYellow;
+      }
+    }
+
+    p {
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+
+      strong {
+        color: $colorSecondary;
+      }
+
+      &.selector-title {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-column-gap: 16px;
+      grid-row-gap: 8px;
+      max-width: 500px;
+      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+      .selector {
+        border: none;
+        outline: none;
+        background-color: $colorYellow;
+        color: #1d1d1d;
+        border-radius: 7px;
+        width: 100%;
+        height: 150px;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: background-color 0.25s, transform 0.25s;
+        transform: scale(1);
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon {
+          height: 100px;
+          margin-bottom: 0.5rem;
+        }
+
+        &:hover {
+          background-color: darken($colorYellow, 7);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .back {
+        background-color: $colorRed;
+
+        &:hover {
+          background-color: darken($colorRed, 5);
+          box-shadow: 0 0 0 3px rgba($colorRed, 0.4);
+        }
+      }
+
+      .forward {
+        background-color: $colorYellow;
+
+        &:hover {
+          background-color: darken($colorYellow, 5);
+          box-shadow: 0 0 0 3px rgba($colorYellow, 0.4);
+        }
+      }
+    }
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 2% 5%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+
+      @media (min-width: 480px) {
+        flex-direction: row;
+
+        justify-content: space-between;
+        font-size: 1rem;
+      }
+
+      .logo {
+        height: 4rem;
+      }
+
+      h1 {
+        color: $colorSecondary;
+      }
+    }
+  }
+
+  .icon {
+    height: 1.25rem;
+    fill: currentColor;
+
+    path,
+    rect {
+      fill: currentColor;
+    }
+  }
+
+  .pager {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-column-gap: 8px;
+    grid-row-gap: 16px;
+  }
+
+  .footer {
+    margin: 16px auto 32px auto;
+    width: 100%;
+    max-width: 450px;
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pager-dotted {
+    display: flex;
+    width: 80px;
+    .dotted {
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-right: 0.5rem;
+      background-color: rgba(darken(#fff, 20), 0.4);
+      border-radius: 100px;
+      transition: width 0.25s;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active {
+        background-color: $colorSecondary;
+        width: 2rem;
+      }
+    }
+  }
+
+  .pager {
+    .back,
+    .forward {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      color: #1d1d1d;
+      border: none;
+      outline: none;
+      background-color: $colorSecondary;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.5rem;
+      height: 2.5rem;
+      transform: scale(1);
+      border-radius: 25px;
+      transition: transform 0.25s;
+
+      &:hover {
+        //transform: scale(1.025);
+        background-color: darken($color: $colorSecondary, $amount: 7);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &:disabled {
+        transform: scale(1);
+        background-color: rgba($colorSecondary, 0.4);
+      }
+    }
+
+    .back {
+      order: 1;
+
+      @media (min-width: 374px) {
+        order: 0;
+      }
+      padding-right: 1rem;
+    }
+
+    .forward {
+      padding-left: 1rem;
+
+      .icon {
+        margin-left: 5px;
+      }
+    }
+
+    .cancel {
+      background-color: $colorRed !important;
+      .icon {
+        height: 0.9rem;
+        margin: 0 !important;
+      }
+
+      &:hover {
+        box-shadow: 0 0 0 3px rgba($colorRed, 0.4);
+      }
+    }
+  }
+
+  textarea.text-input {
+    display: block;
+    width: calc(100% - 2rem);
+    height: 7rem;
+    //margin-left: 1rem;
+    //margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .toshow {
+    animation: toshow 0.5s linear;
+    transform-origin: left center;
+
+    @keyframes toshow {
+      from {
+        //transform: scale(0);
+        opacity: 0;
+      }
+    }
+  }
+
+  .content-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 4rem;
+    border-radius: 7px;
+    min-width: 500px;
+    background-color: #1d1d1d;
+    box-shadow: 0 0 15px -1px rgba(lighten(#000, 30), 0.4);
+
+    .message {
+      color: $colorYellow;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}

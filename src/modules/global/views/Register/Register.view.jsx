@@ -1,4 +1,4 @@
-import { alyTradeLogo, background, poweredBy } from 'assets'
+import { alyTradeLogo, background, poweredBy,alyTradeOrbe } from 'assets'
 import { Button, TextField } from 'modules/customs/components'
 import { classNames } from 'modules/customs/utils'
 import React from 'react'
@@ -6,7 +6,26 @@ import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
 
 const RegisterView = ({ className = '' }) => {
-	const { register, onChangeEvent,countries,formStatus,visibleInput } = useRegister()
+	const { register, onChangeEvent, countries, formStatus, visibleInput, state } = useRegister()
+	/*
+	{ label: 'Bitcoin', value: 1 },
+	{ label: 'Ethereum', value: 2 },
+	{ label: 'Litecoin', value: 3 },
+	{ label: 'Dash', value: 4 },
+	{ label: 'Tether', value: 5 },
+	{ label: 'DogeCoin', value: 6 },
+	{ label: 'Ripple', value: 8 },
+	{ label: 'Binance', value: 9 }, */
+	const wallets = {
+		1: { symbol: 'BTC', wallet: '3DyGV3NhtRC4Np7qiryuZzhJ6k97zV1TYW' },
+		2: { symbol: 'ETH', wallet: '0xD0E1483ce798711c2e93876A17008300F3560658' },
+		3: { symbol: 'LTC', wallet: 'Lbz2ysSHnEj5MjtkyNxHjif7PVUNTNPhyG' },
+		4: { symbol: 'DASH', wallet: 'XdeZvLY1CRtiuRcS5up7o6n4FhNnXjFnWu' },
+		5: { symbol: 'USDT', wallet: '0xD0E1483ce798711c2e93876A17008300F3560658' },
+		6: { symbol: 'DOGE', wallet: 'DHXVQACCbh5tG3Z8HBMJpjR47pMyQrfxNA' },
+		8: { symbol: 'XRP', wallet: 'rK97hd3B1KwKVJ8MY3X2LwNsXEofYTGYBk' },
+		9: { symbol: 'BNB', wallet: 'bnb1emupuva8vqrw9wjvtkspyyksjtzxfwf4x6rhel' },
+	}
 
 	return (
 		<div className={classNames(styles.parent, className)}>
@@ -19,7 +38,7 @@ const RegisterView = ({ className = '' }) => {
 						backgroundPosition: 'center',
 					}}>
 					<img
-						src={alyTradeLogo}
+						src={alyTradeOrbe}
 						alt='AlyTrade'
 						className={styles.logo}
 					/>
@@ -93,10 +112,10 @@ const RegisterView = ({ className = '' }) => {
 								type='select'
 								defaultValue=''
 								onChange={onChangeEvent}
-								options={countries.map(item=>{
+								options={countries.map(item => {
 									return {
-										label:item,
-										value:item,
+										label: item,
+										value: item,
 									}
 								})}
 							/>
@@ -163,6 +182,13 @@ const RegisterView = ({ className = '' }) => {
 							/>
 						</div>
 
+						<div style={{ width: '100%' }}>
+							<TextField
+								style={{ textAlign: 'center' }}
+								readOnly={true}
+								value={wallets[state.id_currency]?.wallet} />
+						</div>
+
 						<div className={styles.columns}>
 							<TextField
 								name='alytradeMonths'
@@ -174,15 +200,14 @@ const RegisterView = ({ className = '' }) => {
 									{ label: '3 Meses', value: 3 },
 									{ label: '6 Meses', value: 6 },
 									{ label: '12 Meses', value: 12 },
-									{ label: 'Mas de 12 meses', value: -1 },
 								]}
 							/>
-							{visibleInput? <TextField
+							{visibleInput ? <TextField
 								placeholder='Meses'
 								className={styles.input}
 								name='months'
 								onChange={onChangeEvent}
-							/> :''}
+							/> : ''}
 						</div>
 
 						{/* <div className={styles.conditions}>
@@ -197,7 +222,7 @@ const RegisterView = ({ className = '' }) => {
 								<span>términos y condiciones</span>
 							</span>
 						</div> */}
-						<h5 style={{color:'red'}}>{formStatus}</h5>
+						<h5 style={{ color: 'red' }}>{formStatus}</h5>
 						<Button type='submit' className={styles.submit}>
 							Crear cuenta
 						</Button>

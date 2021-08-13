@@ -1,0 +1,36 @@
+@import '../../utils/constants.scss';
+
+.modal__beneficiary {
+  margin-top: 64px;
+  position: relative;
+  border-radius: 8px;
+  background-color: $colorMain;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  max-width: 1200px;
+  width: 100%;
+  padding: 16px;
+}
+
+.close__modal--icon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+}
+
+.icon {
+  width: 4rem;
+  height: 1rem;
+  /*margin-left: 1rem;*/
+}
+
+.beneficiary__button--container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 auto;
+  max-width: 500px;
+}

@@ -88,7 +88,7 @@ export const Login = (email, password, callback) => {
             
             sessionStorage.setItem('token', token)
             dispatch({ type: ACTIONS.DASHBOARD_SET_USERINFO, payload: { id_information, id_user, token, username,firstname, lastname, email, phone, country } })
-            callback?.()
+            callback?.(response)
         }).catch(err => {
             console.log(err.message)
             dispatch({ type: ACTIONS.DASHBOARD_LOGIN_STATUS, payload: err.message })

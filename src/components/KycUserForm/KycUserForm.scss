@@ -1,0 +1,183 @@
+@import '../../utils/constants.scss';
+
+.KycUserForm {
+  .section {
+    animation: fadeEffect 0.5s;
+
+    .title {
+      color: $colorYellow;
+      margin-bottom: 2rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      .content-item {
+        width: calc(calc(100% - 100px) / 3);
+
+        .subsection {
+          padding-bottom: 0.7rem;
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+
+        .subtitle {
+          color: $colorSecondary;
+          margin-bottom: 1rem;
+        }
+
+        .row__kyc--person,
+        .col {
+          display: flex;
+          flex-direction: column;
+
+          span {
+            display: block;
+            margin-bottom: 2px;
+
+            &.required {
+              &:after {
+                display: inline-block;
+                content: '\2731';
+                color: $colorRed;
+                font-size: 12px;
+                margin-left: 0.25rem;
+              }
+            }
+          }
+        }
+
+        .row-group {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .row__kyc--person,
+        .row-group {
+          margin-bottom: 1rem;
+          &:last-child {
+            margin-bottom: 2rem;
+          }
+
+          input[type='radio'] {
+            margin-left: 0.25rem;
+          }
+
+          label {
+            margin-right: 2rem;
+          }
+        }
+
+        .col {
+          flex-grow: 1;
+          margin-right: 1rem;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        .horizontal {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .centered {
+          justify-content: center;
+          align-items: center;
+        }
+
+        input[type='file'] {
+          display: none;
+        }
+
+        .upload-section {
+          span {
+            display: block;
+            width: fit-content;
+            max-width: 250px;
+            font-size: 0.85rem;
+          }
+        }
+
+        label.upload {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+          width: 100px;
+          height: 2rem;
+          margin-right: 0;
+          margin-left: 0.5rem;
+          border-radius: 7px;
+          background-color: $colorYellow;
+          color: white;//#1d1d1d;
+          transition: background-color 0.25s;
+
+          &:hover {
+            background-color: darken($colorYellow, 10);
+          }
+
+          svg {
+            height: 1.5rem;
+          }
+
+          path {
+            fill: currentColor;
+          }
+        }
+
+        .img-preview {
+          height: 5rem;
+          margin: 0 auto;
+          object-fit: contain;
+        }
+
+        .button {
+          width: 40%;
+          transform: scale(1);
+          transition: transform 0.25s;
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        .button.cancel {
+          background-color: $colorRed;
+
+          &:hover {
+            box-shadow: 0 0 0 3px rgba($colorRed, 0.4);
+          }
+        }
+      }
+    }
+  }
+
+  .check-input {
+    display: flex;
+    align-items: center;
+    color: $colorYellow;
+    font-weight: bold;
+
+    input[type='checkbox'] {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .toshow {
+    animation: toshow 0.5s linear;
+
+    @keyframes toshow {
+      from {
+        opacity: 0;
+      }
+    }
+  }
+}

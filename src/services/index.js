@@ -24,12 +24,14 @@ class alyTradeApi {
             const { id_user, username, id_information, token, firstname, lastname,
                 email,
                 phone,
-                country } = data
+                country,
+                kyc } = data
             return {
                 id_user, username, id_information, token, firstname, lastname,
                 email,
                 phone,
-                country
+                country,
+                kyc
             }
         }).catch(err => {
             console.log(err)

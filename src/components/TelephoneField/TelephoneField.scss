@@ -1,0 +1,19 @@
+@import '../../utils/constants.scss';
+
+.TelephoneField {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    select {
+        width: 20%;
+        min-width: 85px;
+        max-width: 85px;
+        margin-right: 5px;
+    }
+
+    input {
+        width: 80%;
+        min-width: 100px;
+    }
+}

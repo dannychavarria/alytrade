@@ -1,0 +1,14 @@
+@import '../../utils/constants.scss';
+
+.kyc__person--view {
+  padding-bottom: 64px;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.two__rows--person {
+  display: grid;
+  grid-row-gap: 16px;
+  grid-template-rows: 1fr 1fr;
+}

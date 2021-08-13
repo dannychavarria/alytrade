@@ -10,8 +10,11 @@ const useLogin = () => {
 	const login = (e, formData) => {
 		e.preventDefault()
 
-		dispatcher(Login(formData.email, formData.password, () => {
-			history.push('/dashboard')
+		dispatcher(Login(formData.email, formData.password, ({kyc}) => {
+			if(kyc===1)
+				history.push('/dashboard')
+			else
+				history.push('/kyc')
 		}))
 	}
 
