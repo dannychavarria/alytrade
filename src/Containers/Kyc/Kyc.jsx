@@ -331,8 +331,8 @@ const Kyc = () => {
                 <button
                   onClick={_ => {
                     // Reicia los estados a su valor inicial
-                    setShowIntro(true)
-                    setShowKyc(false)
+                    //setShowIntro(true)
+                    //setShowKyc(false)
                     setUserInfo({})
                     setBeneficiaryInfo({})
                     setEcommerceInfo({})

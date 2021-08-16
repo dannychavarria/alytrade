@@ -11,12 +11,12 @@ const useLogin = () => {
 		e.preventDefault()
 
 		dispatcher(Login(formData.email, formData.password, ({ kyc }) => {
-			history.push('/kyc')
-			console.log("KYC",kyc)
-			/*if (kyc === 1)
+			//history.push('/kyc')
+			//console.log("KYC",kyc)
+			if (kyc === 1)
 				history.push('/dashboard')
 			else
-				history.push('/kyc')*/
+				history.push('/kyc')
 		}))
 	}
 
