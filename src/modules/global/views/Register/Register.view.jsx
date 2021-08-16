@@ -1,4 +1,4 @@
-import { alyTradeLogo, background, poweredBy,alyTradeOrbe } from 'assets'
+import { alyTradeLogo, background, poweredBy, alyTradeOrbe } from 'assets'
 import { Button, TextField } from 'modules/customs/components'
 import { classNames } from 'modules/customs/utils'
 import React from 'react'
@@ -6,7 +6,7 @@ import styles from './Register.module.css'
 import { useRegister } from './useRegister.hook'
 
 const RegisterView = ({ className = '' }) => {
-	const { register, onChangeEvent, countries, formStatus, visibleInput, state } = useRegister()
+	const { register, onChangeEvent, countries, formStatus, visibleInput, state,calcPrice,gotoLogin } = useRegister()
 	/*
 	{ label: 'Bitcoin', value: 1 },
 	{ label: 'Ethereum', value: 2 },
@@ -51,7 +51,8 @@ const RegisterView = ({ className = '' }) => {
 					<Button
 						type='button'
 						rol='secondary'
-						className={styles.submit}>
+						className={styles.submit}
+						onClick={gotoLogin}>
 						Ingresar
 					</Button>
 				</div>
@@ -181,7 +182,25 @@ const RegisterView = ({ className = '' }) => {
 								onChange={onChangeEvent}
 							/>
 						</div>
-
+						<div className={styles.columns}>
+							<TextField
+								name='kyc_type'
+								className={styles.input}
+								type='select'
+								defaultValue=''
+								onChange={onChangeEvent}
+								options={[
+									{ label: 'Personal', value: 1 },
+									{ label: 'Comercio', value: 2 },
+								]}
+							/>
+							<TextField
+								name='min_investment'
+								className={styles.input}
+								value={calcPrice(state.kyc_type,wallets[state.id_currency]?.symbol) +' ' + wallets[state.id_currency]?.symbol}
+								
+							/>
+						</div>
 						<div style={{ width: '100%' }}>
 							<TextField
 								style={{ textAlign: 'center' }}

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { Login } from "reducers/DashboardReducer"
+import { Login, clearLoginStatus } from "reducers/DashboardReducer"
 
 const useLogin = () => {
 
@@ -10,11 +10,13 @@ const useLogin = () => {
 	const login = (e, formData) => {
 		e.preventDefault()
 
-		dispatcher(Login(formData.email, formData.password, ({kyc}) => {
-			if(kyc===1)
+		dispatcher(Login(formData.email, formData.password, ({ kyc }) => {
+			history.push('/kyc')
+			console.log("KYC",kyc)
+			/*if (kyc === 1)
 				history.push('/dashboard')
 			else
-				history.push('/kyc')
+				history.push('/kyc')*/
 		}))
 	}
 
@@ -22,7 +24,11 @@ const useLogin = () => {
 		history.push('/register')
 	}
 
-	return { login, loginState, gotoRegister }
+	const clearStatus = () =>{
+		dispatcher(clearLoginStatus())
+	}
+
+	return { login, loginState, gotoRegister, clearStatus }
 }
 
 export { useLogin }

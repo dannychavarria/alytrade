@@ -38,17 +38,19 @@ const Kyc = () => {
   const [showWaitMessage, setShowWaitMessage] = useState(false)
 
   const [showIntro, setShowIntro] = useState(true)
-  const [showKyc, setShowKyc] = useState(false)
+  const [showKyc, setShowKyc] = useState(true)
   const [USERAGE, setUSERAGE] = useState(0)
   const [isUser, setIsUser] = useState(false)
   const [activeSection, setActiveSection] = useState(1)
-  const userInfoState = useSelector(state=>state.userInfo)
+  const userInfoState = useSelector(state => state.userInfo)
   const history = useHistory()
-  useEffect(()=>{
+  useEffect(() => {
+    console.log('userInfoState', userInfoState)
+    setIsUser(userInfoState.kyc_type === 1)
     if(userInfoState.kyc===1){
       history.push('/dashboard')
     }
-  },[])
+  }, [])
 
   /**
    * Estados para los campos del formulario de KYC
@@ -201,6 +203,7 @@ const Kyc = () => {
 
   return (
     <div className="Kyc">
+      {/*
       {!showKyc && (
         <div className="welcome">
           {showIntro && (
@@ -258,19 +261,19 @@ const Kyc = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       {showKyc && (
         <div className="container">
           <header className="header">
             <img src={Logo} alt="logo" className="logo" />
 
-            {isUser && <h1>Kyc Personal</h1>}
+            {userInfoState.kyc_type === 1 ? <h1>Kyc Personal</h1> : ''}
 
-            {!isUser && <h1>Kyc Empresarial</h1>}
+            {userInfoState.kyc_type === 2 ? <h1>Kyc Empresarial</h1> : ''}
           </header>
 
-          {isUser && (
+          {isUser  ? (
             <>
               {activeSection === 1 && (
                 <KycUserForm
@@ -288,15 +291,13 @@ const Kyc = () => {
                 />
               )}
             </>
-          )}
-
-          {!isUser && (
+          ) : !isUser ? (
             <KycEcommerceForm
               state={ecommerceInfo}
               setState={setEcommerceInfo}
               activeSection={activeSection}
             />
-          )}
+          ) : ''}
 
           <div className="footer">
             {!isUser && (
@@ -306,9 +307,8 @@ const Kyc = () => {
                   .map((_, index) => (
                     <div
                       key={index}
-                      className={`dotted ${
-                        activeSection === index + 1 ? 'active' : ''
-                      }`}
+                      className={`dotted ${activeSection === index + 1 ? 'active' : ''
+                        }`}
                     ></div>
                   ))}
               </div>
@@ -363,11 +363,11 @@ const Kyc = () => {
                 ((USERAGE >= 18 && !userInfo.addBeneficiary) ||
                   activeSection === 2)) ||
                 (!isUser && activeSection === 3)) && (
-                <button onClick={onSubmit} className="forward">
-                  Guardar
-                  <SaveIcon className="icon" />
-                </button>
-              )}
+                  <button onClick={onSubmit} className="forward">
+                    Guardar
+                    <SaveIcon className="icon" />
+                  </button>
+                )}
             </div>
           </div>
         </div>

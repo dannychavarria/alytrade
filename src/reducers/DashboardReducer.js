@@ -74,20 +74,20 @@ export const DashboardReducer = (state = initialState, action) => {
 
 export const Login = (email, password, callback) => {
 
-    if(!email || !password ){
+    if (!email || !password) {
         return { type: ACTIONS.DASHBOARD_LOGIN_STATUS, payload: 'Verifique su email y su contraseña' }
     }
 
     return dispatch => {
         return Services.login(email, password).then(response => {
-            const { id_information, id_user, token, username,firstname,
+            const { id_information, id_user, token, username, firstname,
                 lastname,
                 email,
                 phone,
-                country } = response
-            
+                country, kyc, kyc_type } = response
+
             sessionStorage.setItem('token', token)
-            dispatch({ type: ACTIONS.DASHBOARD_SET_USERINFO, payload: { id_information, id_user, token, username,firstname, lastname, email, phone, country } })
+            dispatch({ type: ACTIONS.DASHBOARD_SET_USERINFO, payload: { id_information, id_user, token, username, firstname, lastname, email, phone, country, kyc, kyc_type } })
             callback?.(response)
         }).catch(err => {
             console.log(err.message)
@@ -188,5 +188,9 @@ export const clearNewInvestmenStatus = () => {
 }
 
 export const changeUserInfo = (data) => {
-    return { type:ACTIONS.DASHBOARD_SET_USERINFO, payload:data }
+    return { type: ACTIONS.DASHBOARD_SET_USERINFO, payload: data }
+}
+
+export const clearLoginStatus = () =>{
+    return { type: ACTIONS.DASHBOARD_LOGIN_STATUS, payload: '' }
 }

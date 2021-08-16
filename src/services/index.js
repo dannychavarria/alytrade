@@ -20,18 +20,19 @@ class alyTradeApi {
             const { data } = response
             if (data.error)
                 throw new Error(data.message)
-
+            
             const { id_user, username, id_information, token, firstname, lastname,
                 email,
                 phone,
                 country,
-                kyc } = data
+                kyc, kyc_type } = data
+
             return {
                 id_user, username, id_information, token, firstname, lastname,
                 email,
                 phone,
                 country,
-                kyc
+                kyc, kyc_type
             }
         }).catch(err => {
             console.log(err)
@@ -106,16 +107,16 @@ class alyTradeApi {
     }
     updateUserData = (token, data) => {
         return axios({
-            method:'POST',
-            url:`${this.host}/alytrade/user/data`,
+            method: 'POST',
+            url: `${this.host}/alytrade/user/data`,
             data,
             headers: {
                 'x-auth-token': token
             }
-        }).then(response =>{
+        }).then(response => {
             return response
         }).catch(err => {
-            const {response} = err
+            const { response } = err
             console.dir(response)
             throw new Error(response.data.error)
         })

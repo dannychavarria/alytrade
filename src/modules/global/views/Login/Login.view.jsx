@@ -8,10 +8,11 @@ import { FiLock, FiMail } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 const LoginView = ({ className = '' }) => {
-	const { login, loginState, gotoRegister } = useLogin()
+	const { login, loginState, gotoRegister, clearStatus } = useLogin()
 
 	const [state, setState] = useState({email:'',password:''})
 	const onChangeEvent = (e) => {
+		clearStatus()
 		setState({
 			...state,
 			[e.target.name]: e.target.value
