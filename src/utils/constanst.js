@@ -181,8 +181,8 @@ export const floor = (number, precision) => {
         precision == null
             ? 0
             : precision >= 0
-            ? Math.min(precision, 292)
-            : Math.max(precision, -292)
+                ? Math.min(precision, 292)
+                : Math.max(precision, -292)
 
     if (precision) {
         // Shift with exponential notation to avoid floating-point issues.
@@ -380,11 +380,15 @@ const Petition = Axios.create({
 Petition.interceptors.request.use(config => {
     // Se añade el token de acceso antes de cada petición
     const state = store?.getState?.()
-    
-    config.headers = {
-        ...config.headers,
-        'x-auth-token': state.userInfo.token//getStorage().token,
-    }
+    if (state?.userInfo?.token)
+        config.headers = {
+            ...config.headers,
+            'x-auth-token': state?.userInfo?.token//getStorage().token,
+        }
+    else
+        config.headers = {
+            ...config.headers,
+        }
 
     return config
 })

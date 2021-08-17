@@ -60,6 +60,9 @@ const Routes = () => {
 				<Route path='/create-investment'>
 					<CreateInvestmentView />
 				</Route>
+				<Route path='/password-reset'>
+					<Containers.Reset/>
+				</Route>
 				<PrivateRoute isLogged={IsLogged()} path='/dashboard'>
 					<Containers.MainContainer />
 				</PrivateRoute>

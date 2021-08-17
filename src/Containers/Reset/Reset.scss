@@ -1,0 +1,97 @@
+@import "../../utils/constants.scss";
+
+.container-reset {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  .content {
+    animation: fadeEffect 1s;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $colorMain;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 25px 5px;
+    // border: 2px solid $colorMain;
+    display: flex;
+    padding: 1em;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    width: 512px;
+
+    h1 {
+      color: $colorYellow;
+      font-size: 1.2em;
+      text-align: center;
+      margin: 25px 0;
+      font-weight: lighter;
+      width: 50%;
+    }
+
+    .logo {
+      max-width: 256px;
+    }
+
+    .row {
+      align-items: center;
+      display: flex;
+      margin: 1em auto;
+      flex-direction: column;
+      width: 100%;
+
+      .legend {
+        color: $colorYellow;
+      }
+
+      &.captcha {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      &.buttons {
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .write {
+          color: $colorSecondary;
+        }
+      }
+
+      &.password {
+        input {
+          margin: 10px auto;
+          width: 100%;
+        }
+      }
+
+      &.code {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        input {
+          font-size: 1em;
+          margin: auto;
+          width: 80%;
+
+          &.code {
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1.5em;
+          }
+        }
+      }
+    }
+
+    p {
+      color: #ccc;
+      margin-top: 1em;
+      text-align: center;
+      font-size: 0.8em;
+    }
+  }
+}

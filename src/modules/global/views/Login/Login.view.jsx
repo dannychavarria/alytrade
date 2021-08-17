@@ -65,7 +65,7 @@ const LoginView = ({ className = '' }) => {
 						<span>¿Olvidaste tu contraseña?</span>
 
 						<span className={styles.textSecondary}>
-							De click <Link to='/'>Aquí</Link>
+							De click <Link to='/password-reset'>Aquí</Link>
 						</span>
 					</div>
 				</div>
