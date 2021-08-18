@@ -7,7 +7,8 @@ import axios from "axios"
 
 const initialState = {
 	id_currency: 1,
-	alytradeMonths: 3
+	alytradeMonths: 3,
+	kyc_type: 1
 }
 
 const schema = Joi.object({
@@ -28,6 +29,7 @@ const schema = Joi.object({
 		'any.only': '{{#label}} No coincide',
 		'any.required': 'Debe ingresar contraseña'
 	}),
+	kyc_type: Joi.number(),
 	amount: Joi.number().required().prefs({ convert: true }).messages({ 'any.required': 'Debe ingresar el monto de la transacción' }),
 	months: Joi.number().min(13).prefs({ convert: true }).optional().messages({ 'number.min': 'Debe ingresar mas de 12 meses' })
 })
@@ -74,17 +76,17 @@ const useRegister = () => {
 
 
 	const calcPrice = (kycType, currency) => {
-		if(!usdPrices)
+		if (!usdPrices)
 			return
-		
+
 		const commercePrice = 20000
 		const userPrice = 10000
 		const price = kycType == 1 ? userPrice : commercePrice
-		
-		const formatter = Intl.NumberFormat('en-US',{currency:'USD',maximumFractionDigits:2})
-		return formatter.format(price/usdPrices[currency])
+
+		const formatter = Intl.NumberFormat('en-US', { currency: 'USD', maximumFractionDigits: 2 })
+		return formatter.format(price / usdPrices[currency])
 	}
-	
+
 
 
 	const onChangeEvent = (e) => {
@@ -136,6 +138,7 @@ const useRegister = () => {
 			"wallet": value.wallet,
 			"amount": value.amount,
 			"id_currency": value.id_currency,
+			"kyc_type": value.kyc_type,
 			//"info":value.info,
 			"alytradeMonths": value.alytradeMonths === -1 ? value.months : value.alytradeMonths,
 		}
@@ -148,13 +151,13 @@ const useRegister = () => {
 		if (!request) {
 			return
 		}
-		console.log(request)
-		/*services.registerNewUser(request).then(response => {
+		
+		services.registerNewUser(request).then(response => {
 			history.push("/login")
 		}).catch(err => {
 			console.log(err)
 			setFormStatus(err.message)
-		})*/
+		})
 	}
 
 	const register = e => {
